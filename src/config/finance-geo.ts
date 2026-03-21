@@ -89,6 +89,7 @@ export const STOCK_EXCHANGES: StockExchange[] = [
   { id: 'egx', name: 'Egyptian Exchange', shortName: 'EGX', city: 'Cairo', country: 'EG', lat: 30.0492, lon: 31.2340, tier: 'emerging', description: 'Egypt\'s exchange' },
   { id: 'nzx', name: 'New Zealand Exchange', shortName: 'NZX', city: 'Wellington', country: 'NZ', lat: -41.2866, lon: 174.7756, tier: 'emerging', description: 'New Zealand\'s exchange' },
   { id: 'tase', name: 'Tel Aviv Stock Exchange', shortName: 'TASE', city: 'Tel Aviv', country: 'IL', lat: 32.0669, lon: 34.7856, tier: 'emerging', marketCap: 0.3, tradingHours: '09:59-17:15 IST', timezone: 'Asia/Jerusalem', description: 'Israel\'s exchange' },
+  { id: 'bse-hu', name: 'Budapest Stock Exchange', shortName: 'BÉT', city: 'Budapest', country: 'HU', lat: 47.5028, lon: 19.0494, tier: 'emerging', marketCap: 0.025, tradingHours: '09:00-17:00 CET', timezone: 'Europe/Budapest', description: 'Hungary\'s stock exchange (Budapesti Értéktőzsde)' },
 ];
 
 // Major financial centers (GFCI-ranked)
@@ -135,6 +136,7 @@ export const CENTRAL_BANKS: CentralBank[] = [
   { id: 'sama', name: 'Saudi Central Bank', shortName: 'SAMA', city: 'Riyadh', country: 'SA', lat: 24.6938, lon: 46.6850, type: 'regional', currency: 'SAR', description: 'Saudi Arabia\'s central bank' },
   { id: 'bis', name: 'Bank for International Settlements', shortName: 'BIS', city: 'Basel', country: 'CH', lat: 47.5585, lon: 7.5866, type: 'supranational', description: 'Central bank of central banks' },
   { id: 'imf', name: 'International Monetary Fund', shortName: 'IMF', city: 'Washington D.C.', country: 'US', lat: 38.8987, lon: -77.0425, type: 'supranational', description: 'Global financial stability institution' },
+  { id: 'mnb', name: 'Magyar Nemzeti Bank', shortName: 'MNB', city: 'Budapest', country: 'HU', lat: 47.5010, lon: 19.0404, type: 'regional', currency: 'HUF', description: 'Hungary\'s central bank' },
 ];
 
 // Commodity trading hubs

@@ -47,7 +47,14 @@
     { "symbol": "TITAN.NS", "name": "Titan Company", "display": "TITAN" },
     { "symbol": "M&M.NS", "name": "Mahindra & Mahindra", "display": "M&M" },
     { "symbol": "TATASTEEL.NS", "name": "Tata Steel", "display": "STEEL" },
-    { "symbol": "KOTAKBANK.NS", "name": "Kotak Mahindra", "display": "KOTAK" }
+    { "symbol": "KOTAKBANK.NS", "name": "Kotak Mahindra", "display": "KOTAK" },
+    { "symbol": "^BUX", "name": "BUX Index", "display": "BUX" },
+    { "symbol": "OTP.BU", "name": "OTP Bank", "display": "OTP" },
+    { "symbol": "MOL.BU", "name": "MOL Group", "display": "MOL" },
+    { "symbol": "RICHTER.BU", "name": "Gedeon Richter", "display": "RICHTER" },
+    { "symbol": "MTELEKOM.BU", "name": "Magyar Telekom", "display": "MTEL" },
+    { "symbol": "4IG.BU", "name": "4iG Group", "display": "4IG" },
+    { "symbol": "OPUS.BU", "name": "Opus Global", "display": "OPUS" }
   ],
   "yahooOnly": [
     "^GSPC", "^DJI", "^IXIC",
@@ -55,6 +62,8 @@
     "RELIANCE.NS", "TCS.NS", "HDFCBANK.NS", "ICICIBANK.NS", "BHARTIARTL.NS",
     "INFY.NS", "SBIN.NS", "LICI.NS", "ITC.NS", "HINDUNILVR.NS",
     "LT.NS", "BAJFINANCE.NS", "ADANIENT.NS", "SUNPHARMA.NS", "TITAN.NS",
-    "M&M.NS", "TATASTEEL.NS", "KOTAKBANK.NS"
+    "M&M.NS", "TATASTEEL.NS", "KOTAKBANK.NS",
+    "^BUX",
+    "OTP.BU", "MOL.BU", "RICHTER.BU", "MTELEKOM.BU", "4IG.BU", "OPUS.BU"
   ]
 }

@@ -308,6 +308,15 @@ export const SOURCE_TIERS: Record<string, number> = {
   'GNN Health': 3,
   'GNN Heroes': 3,
   'GNN Earth': 3,
+  // Hungarian
+  'Portfolio.hu': 2,
+  'Telex.hu': 2,
+  'HVG.hu': 2,
+  'Index.hu': 2,
+  '444.hu': 2,
+  'Magyar Nemzet': 2,
+  'Világgazdaság': 2,
+  'MNB News': 1,
 };
 
 export function getSourceTier(sourceName: string): number {
@@ -394,6 +403,11 @@ export const SOURCE_TYPES: Record<string, SourceType> = {
   'This Week in Startups': 'tech', 'The Twenty Minute VC': 'tech',
   'Hard Fork (NYT)': 'tech', 'Pivot (Vox)': 'tech', 'Stratechery': 'tech',
   'Benedict Evans': 'tech', 'How I Built This': 'tech', 'Masters of Scale': 'tech',
+  // Hungarian
+  'Portfolio.hu': 'market', 'Világgazdaság': 'market',
+  'Telex.hu': 'mainstream', 'HVG.hu': 'mainstream', 'Index.hu': 'mainstream',
+  '444.hu': 'mainstream', 'Magyar Nemzet': 'mainstream',
+  'MNB News': 'gov',
 };
 
 export function getSourceType(sourceName: string): SourceType {
@@ -446,6 +460,8 @@ export const SOURCE_PROPAGANDA_RISK: Record<string, SourceRiskProfile> = {
   'Financial Times': { risk: 'low', note: 'Business focus, Nikkei-owned' },
   'Bellingcat': { risk: 'low', note: 'Open-source investigations, methodology transparent' },
   'Brasil Paralelo': { risk: 'low', note: 'Independent media company: no political ties, no public funding, 100% subscriber-funded.' },
+  // Hungarian
+  'Magyar Nemzet': { risk: 'medium', stateAffiliated: 'Hungary', note: 'Government-aligned Hungarian daily' },
 };
 
 export function getSourcePropagandaRisk(sourceName: string): SourceRiskProfile {
@@ -565,6 +581,16 @@ const FULL_FEEDS: Record<string, Feed[]> = {
     { name: 'RT Russia', url: rss('https://www.rt.com/rss/russia/') },
     { name: 'Kyiv Independent', url: rss('https://news.google.com/rss/search?q=site:kyivindependent.com+when:3d&hl=en-US&gl=US&ceid=US:en') },
     { name: 'Moscow Times', url: rss('https://www.themoscowtimes.com/rss/news') },
+  ],
+  hungary: [
+    { name: 'Portfolio.hu', url: rss('https://www.portfolio.hu/rss/all.xml'), lang: 'hu' },
+    { name: 'Világgazdaság', url: rss('https://www.vg.hu/feed'), lang: 'hu' },
+    { name: 'Telex.hu', url: rss('https://telex.hu/rss'), lang: 'hu' },
+    { name: 'HVG.hu', url: rss('https://hvg.hu/rss'), lang: 'hu' },
+    { name: 'Index.hu', url: rss('https://index.hu/24ora/rss/'), lang: 'hu' },
+    { name: '444.hu', url: rss('https://444.hu/feed'), lang: 'hu' },
+    { name: 'Magyar Nemzet', url: rss('https://magyarnemzet.hu/feed/'), lang: 'hu' },
+    { name: 'MNB News', url: rss('https://news.google.com/rss/search?q=site:mnb.hu+OR+%22Magyar+Nemzeti+Bank%22+when:7d&hl=hu&gl=HU&ceid=HU:hu'), lang: 'hu' },
   ],
   middleeast: [
     { name: 'BBC Middle East', url: rss('https://feeds.bbci.co.uk/news/world/middle_east/rss.xml') },
@@ -1204,6 +1230,7 @@ export const SOURCE_REGION_MAP: Record<string, { labelKey: string; feedKeys: str
   africa: { labelKey: 'header.sourceRegionAfrica', feedKeys: ['africa'] },
   latam: { labelKey: 'header.sourceRegionLatAm', feedKeys: ['latam'] },
   asia: { labelKey: 'header.sourceRegionAsiaPacific', feedKeys: ['asia'] },
+  hungary: { labelKey: 'header.sourceRegionHungary', feedKeys: ['hungary'] },
   topical: { labelKey: 'header.sourceRegionTopical', feedKeys: ['energy', 'tech', 'ai', 'finance', 'layoffs', 'thinktanks'] },
   intel: { labelKey: 'header.sourceRegionIntel', feedKeys: [] },
 

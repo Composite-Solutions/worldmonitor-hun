@@ -6,52 +6,52 @@
    ============================================================ */
 :root {
   /* Backgrounds */
-  --bg: #0a0a0a;
-  --bg-secondary: #111;
-  --surface: #141414;
-  --surface-hover: #1e1e1e;
-  --surface-active: #1a1a2e;
+  --bg: #08081a;
+  --bg-secondary: #0e0e24;
+  --surface: #12122a;
+  --surface-hover: #1a1a36;
+  --surface-active: #1e1e42;
 
   /* Borders */
-  --border: #2a2a2a;
-  --border-strong: #444;
-  --border-subtle: #1a1a1a;
+  --border: #2a2a4a;
+  --border-strong: #3a3a5e;
+  --border-subtle: #1a1a32;
 
   /* Text */
-  --text: #e8e8e8;
-  --text-secondary: #ccc;
-  --text-dim: #888;
-  --text-muted: #666;
-  --text-faint: #555;
-  --text-ghost: #444;
-  --accent: #fff;
+  --text: #e8e8f0;
+  --text-secondary: #c8c8d8;
+  --text-dim: #8888a8;
+  --text-muted: #666688;
+  --text-faint: #555570;
+  --text-ghost: #444460;
+  --accent: #5963f8;
 
   /* Overlays & shadows */
-  --overlay-subtle: rgba(255, 255, 255, 0.03);
-  --overlay-light: rgba(255, 255, 255, 0.05);
-  --overlay-medium: rgba(255, 255, 255, 0.1);
-  --overlay-heavy: rgba(255, 255, 255, 0.2);
-  --shadow-color: rgba(0, 0, 0, 0.5);
-  --darken-light: rgba(0, 0, 0, 0.15);
-  --darken-medium: rgba(0, 0, 0, 0.2);
-  --darken-heavy: rgba(0, 0, 0, 0.3);
+  --overlay-subtle: rgba(89, 99, 248, 0.03);
+  --overlay-light: rgba(89, 99, 248, 0.05);
+  --overlay-medium: rgba(89, 99, 248, 0.1);
+  --overlay-heavy: rgba(89, 99, 248, 0.2);
+  --shadow-color: rgba(0, 0, 20, 0.5);
+  --darken-light: rgba(0, 0, 20, 0.15);
+  --darken-medium: rgba(0, 0, 20, 0.2);
+  --darken-heavy: rgba(0, 0, 20, 0.3);
 
   /* Scrollbar */
-  --scrollbar-thumb: #333;
-  --scrollbar-thumb-hover: #555;
+  --scrollbar-thumb: #2a2a4a;
+  --scrollbar-thumb-hover: #3a3a5e;
 
   /* Input */
-  --input-bg: #1a1a1a;
+  --input-bg: #14142c;
 
   /* Panels */
-  --panel-bg: #141414;
-  --panel-border: #2a2a2a;
+  --panel-bg: #12122a;
+  --panel-border: #2a2a4a;
 
   /* Map */
-  --map-bg: #020a08;
-  --map-grid: #0a2a20;
-  --map-country: #0a2018;
-  --map-stroke: #0f5040;
+  --map-bg: #04041a;
+  --map-grid: #141446;
+  --map-country: #0c0c30;
+  --map-stroke: #282866;
 
   /* Font stack */
   --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Fira Code', 'DejaVu Sans Mono', 'Liberation Mono', monospace;
@@ -104,8 +104,12 @@
 
   /* Legacy color aliases (used by existing var() references) */
   --red: #ff4444;
-  --green: #44ff88;
+  --green: #44dd88;
   --yellow: #ffaa00;
+
+  /* Primary brand accent (hungaryusa.com indigo) */
+  --brand-primary: #5963f8;
+  --brand-primary-dim: #4450d0;
 }
 
 /* ============================================================

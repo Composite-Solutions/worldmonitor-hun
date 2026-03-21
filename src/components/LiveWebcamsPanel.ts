@@ -8,7 +8,7 @@ import { getStreamQuality, subscribeStreamQualityChange } from '@/services/ai-fl
 import { isMobileDevice, loadFromStorage, saveToStorage } from '@/utils';
 import { getLiveStreamsAlwaysOn, subscribeLiveStreamsSettingsChange } from '@/services/live-stream-settings';
 
-type WebcamRegion = 'iran' | 'middle-east' | 'europe' | 'asia' | 'americas' | 'space';
+type WebcamRegion = 'hungary' | 'iran' | 'middle-east' | 'europe' | 'asia' | 'americas' | 'space';
 
 interface WebcamFeed {
   id: string;
@@ -22,6 +22,14 @@ interface WebcamFeed {
 // Verified YouTube live stream IDs — validated Feb 2026 via title cross-check.
 // IDs may rotate; update when stale.
 const WEBCAM_FEEDS: WebcamFeed[] = [
+  // Hungary — Budapest & key cities
+  { id: 'budapest-zoo-elephant', city: 'Budapest (Zoo)', country: 'Hungary', region: 'hungary', channelHandle: '@budapestiallatkert24', fallbackVideoId: 'UEFEjZHxNh8' },
+  { id: 'budapest-zoo-savanna', city: 'Budapest (Szavanna)', country: 'Hungary', region: 'hungary', channelHandle: '@budapestiallatkert24', fallbackVideoId: 'sBg8TC11i6k' },
+  { id: 'budapest-earthtv', city: 'Budapest (EarthTV)', country: 'Hungary', region: 'hungary', channelHandle: '@earthTV', fallbackVideoId: 'HfgIFGbdGJ0' },
+  { id: 'pecs-szechenyi', city: 'Pécs (Széchenyi tér)', country: 'Hungary', region: 'hungary', channelHandle: '@pecsvaros8048', fallbackVideoId: 'xHGptu2SkZk' },
+  { id: 'balaton-alsoors', city: 'Balaton (Alsóörs)', country: 'Hungary', region: 'hungary', channelHandle: '@InfoCAM-hu', fallbackVideoId: 'PEC7g8PuNt4' },
+  { id: 'veszprem-panorama', city: 'Veszprém', country: 'Hungary', region: 'hungary', channelHandle: '@InfoCAM-hu', fallbackVideoId: 'akeYBgt-AQ0' },
+  { id: 'szekesfehervar', city: 'Székesfehérvár', country: 'Hungary', region: 'hungary', channelHandle: '@Fehérvár', fallbackVideoId: 'WHUTZjQ3TbU' },
   // Iran Attacks — Tehran, Tel Aviv, Jerusalem
   { id: 'iran-tehran', city: 'Tehran', country: 'Iran', region: 'iran', channelHandle: '@IranHDCams', fallbackVideoId: '-zGuR1qVKrU' },
   { id: 'iran-telaviv', city: 'Tel Aviv', country: 'Israel', region: 'iran', channelHandle: '@IsraelLiveCam', fallbackVideoId: 'gmtlJ_m2r5A' },
@@ -66,7 +74,7 @@ const IDLE_ACTIVITY_EVENTS = ['mousedown', 'keydown', 'scroll', 'touchstart', 'm
 type ViewMode = 'grid' | 'single';
 type RegionFilter = 'all' | WebcamRegion;
 
-const ALL_REGIONS: RegionFilter[] = ['all', 'iran', 'middle-east', 'europe', 'americas', 'asia', 'space'];
+const ALL_REGIONS: RegionFilter[] = ['all', 'hungary', 'iran', 'middle-east', 'europe', 'americas', 'asia', 'space'];
 
 interface WebcamPrefs {
   regionFilter: RegionFilter;
@@ -77,7 +85,7 @@ interface WebcamPrefs {
 function loadWebcamPrefs(forceSingleView: boolean): WebcamPrefs {
   const stored = loadFromStorage<Partial<WebcamPrefs>>(STORAGE_KEYS.webcamPrefs, {});
   const region = stored.regionFilter as RegionFilter;
-  const regionFilter = ALL_REGIONS.includes(region) ? region : 'iran';
+  const regionFilter = ALL_REGIONS.includes(region) ? region : 'hungary';
   const viewMode = forceSingleView ? 'single'
     : (stored.viewMode === 'grid' || stored.viewMode === 'single' ? stored.viewMode : 'grid');
   const regionFeeds = regionFilter === 'all' ? WEBCAM_FEEDS
@@ -100,7 +108,7 @@ interface WebcamIframeTracker {
 
 export class LiveWebcamsPanel extends Panel {
   private viewMode: ViewMode = 'grid';
-  private regionFilter: RegionFilter = 'iran';
+  private regionFilter: RegionFilter = 'hungary';
   private activeFeed: WebcamFeed = WEBCAM_FEEDS[0]!;
   private toolbar: HTMLElement | null = null;
   private iframes: HTMLIFrameElement[] = [];
@@ -209,6 +217,7 @@ export class LiveWebcamsPanel extends Panel {
     regionGroup.className = 'webcam-toolbar-group';
 
     const regions: { key: RegionFilter; label: string }[] = [
+      { key: 'hungary', label: t('components.webcams.regions.hungary') },
       { key: 'iran', label: t('components.webcams.regions.iran') },
       { key: 'all', label: t('components.webcams.regions.all') },
       { key: 'middle-east', label: t('components.webcams.regions.mideast') },

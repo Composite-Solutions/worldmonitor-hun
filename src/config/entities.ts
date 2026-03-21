@@ -39,6 +39,15 @@ export const ENTITY_REGISTRY: EntityEntry[] = [
     related: ['^GSPC', 'XLK'],
   },
 
+  {
+    id: '^BUX',
+    type: 'index',
+    name: 'BUX Index',
+    aliases: ['bux', 'bux index', 'budapesti értéktőzsde', 'budapest stock exchange', 'bét'],
+    keywords: ['hungarian market', 'budapest', 'hungary', 'stocks', 'forint'],
+    related: ['OTP.BU', 'MOL.BU', 'RICHTER.BU'],
+  },
+
   // ============================================================================
   // TECH COMPANIES
   // ============================================================================
@@ -627,6 +636,45 @@ export const ENTITY_REGISTRY: EntityEntry[] = [
     aliases: ['egypt', 'cairo', 'sisi'],
     keywords: ['suez canal', 'gaza', 'rafah', 'imf', 'debt', 'tourism'],
     related: ['IL', 'SA', 'AE'],
+  },
+  {
+    id: 'HU',
+    type: 'country',
+    name: 'Hungary',
+    aliases: ['hungary', 'hungarian', 'magyarország', 'budapest', 'orbán', 'orban'],
+    keywords: ['eu', 'visegrad', 'nato', 'forint', 'huf', 'central europe', 'bux'],
+    related: ['^BUX', 'OTP.BU', 'MOL.BU'],
+  },
+
+  // ============================================================================
+  // HUNGARIAN COMPANIES
+  // ============================================================================
+  {
+    id: 'OTP.BU',
+    type: 'company',
+    name: 'OTP Bank',
+    aliases: ['otp', 'otp bank', 'otp csoport', 'otp nyrt'],
+    keywords: ['bank', 'banking', 'hungarian', 'budapest', 'central europe', 'finance'],
+    sector: 'Finance',
+    related: ['^BUX', 'MOL.BU', 'RICHTER.BU'],
+  },
+  {
+    id: 'MOL.BU',
+    type: 'company',
+    name: 'MOL Group',
+    aliases: ['mol', 'mol group', 'mol nyrt', 'magyar olaj'],
+    keywords: ['oil', 'gas', 'energy', 'refinery', 'hungarian', 'petrol'],
+    sector: 'Energy',
+    related: ['^BUX', 'OTP.BU'],
+  },
+  {
+    id: 'RICHTER.BU',
+    type: 'company',
+    name: 'Gedeon Richter',
+    aliases: ['richter', 'gedeon richter', 'richter nyrt'],
+    keywords: ['pharma', 'pharmaceutical', 'hungarian', 'generics', 'drug'],
+    sector: 'Healthcare',
+    related: ['^BUX', 'OTP.BU'],
   },
 ];
 

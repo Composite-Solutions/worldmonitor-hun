@@ -1,0 +1,2687 @@
+{
+  "app": {
+    "title": "World Monitor",
+    "description": "Globális helyzet MI elemzésekkel"
+  },
+  "widgets": {
+    "createWithAi": "Létrehozás MI-vel",
+    "confirmDelete": "Véglegesen eltávolítja ezt a widgetet?",
+    "chatTitle": "Widget építő",
+    "modifyTitle": "Widget módosítása",
+    "inputPlaceholder": "Írja le a widgetet...",
+    "addToDashboard": "Hozzáadás az irányítópulthoz",
+    "applyChanges": "Módosítások alkalmazása",
+    "send": "Küldés",
+    "changeAccent": "Kiemelőszín módosítása",
+    "modifyWithAi": "Widget módosítása MI-vel",
+    "ready": "Widget kész: {{title}}",
+    "fetching": "{{target}} lekérése...",
+    "requestTimedOut": "A kérés időtúllépés miatt megszakadt. Kérjük, próbálja újra.",
+    "serverError": "Szerverhiba: {{status}}",
+    "unknownError": "Ismeretlen hiba",
+    "generatedWidget": "Generált widget: {{title}}",
+    "checkingConnection": "Widget hozzáférés ellenőrzése…",
+    "preflightConnected": "Csatlakozva a widget ügynökhöz",
+    "preflightInvalidKey": "Widget kulcs elutasítva. Frissítse a wm-widget-key-t és töltse újra.",
+    "preflightUnavailable": "A widget ügynök átmenetileg nem elérhető.",
+    "preflightAiUnavailable": "Az MI háttérrendszer nem elérhető. Próbálja később.",
+    "readyToGenerate": "Generálásra kész. Válasszon egy példát vagy írja le a widgetet.",
+    "readyToApply": "Előnézet kész: {{title}}. Tekintse át, majd adja hozzá az irányítópulthoz.",
+    "modifyHint": "Az aktuális widget előnézete. Küldjön módosítási kérést a felülvizsgálathoz.",
+    "generating": "Generálás…",
+    "examplesTitle": "Prompt ötletek",
+    "previewTitle": "Élő előnézet",
+    "phaseChecking": "Ellenőrzés",
+    "phaseReadyToPrompt": "Kész",
+    "phaseFetching": "Lekérés",
+    "phaseComposing": "Összeállítás",
+    "phaseComplete": "Kész",
+    "phaseError": "Hiba",
+    "previewCheckingHeading": "Widget építő csatlakoztatása",
+    "previewReadyHeading": "Írja le a kívánt widgetet",
+    "previewFetchingHeading": "Élő WorldMonitor adatok lekérése",
+    "previewComposingHeading": "Widget elrendezés összeállítása",
+    "previewErrorHeading": "Az előnézet figyelmet igényel",
+    "previewCheckingCopy": "A widget kulcs és a háttérrendszer elérhetőségének ellenőrzése a generálás engedélyezése előtt.",
+    "previewReadyCopy": "Használjon egy prompt példát vagy írja le a kívánt élő nézetet. Az előnézet itt frissül mentés előtt.",
+    "previewFetchingCopy": "Az ügynök meghívja a jóváhagyott WorldMonitor végpontokat és formázza az adathalmazt a widgethez.",
+    "previewComposingCopy": "Az előnézet a legfrissebb élő adatokkal és irányítópult stílussal renderelődik.",
+    "previewErrorCopy": "Javítsa a hibát, majd próbálja újra. A meglévő widgetjeit ez nem érinti.",
+    "createInteractive": "Interaktív widget létrehozása",
+    "proBadge": "PRO",
+    "preflightProUnavailable": "PRO widget ügynök nem elérhető. Ellenőrizze a PRO_WIDGET_KEY-t a szerveren.",
+    "preflightInvalidProKey": "PRO kulcs elutasítva. Frissítse a wm-pro-key-t és töltse újra.",
+    "examples": {
+      "oilGold": "Mutasd a mai nyersolaj árat az aranyhoz képest",
+      "cryptoMovers": "Készíts widgetet az elmúlt 24 óra legnagyobb kripto mozgásairól",
+      "flightDelays": "Összegezd a jelenlegi legrosszabb nemzetközi járatkéséseket",
+      "conflictHotspots": "Térképezd fel a legújabb UCDP konfliktus gócpontokat rövid címkékkel"
+    },
+    "proExamples": {
+      "interactiveChart": "Interaktív Chart.js diagram az olaj és arany árak összehasonlításával",
+      "sortableTable": "Rendezhető kripto ártáblázat keresőszűrővel",
+      "animatedCounters": "Animált számlálók a fő gazdasági mutatókhoz",
+      "tabbedComparison": "Füles összehasonlítás a konfliktus eseményekről régiónként"
+    }
+  },
+  "countryBrief": {
+    "identifying": "Ország azonosítása...",
+    "locating": "Régió meghatározása...",
+    "geocodeFailed": "Nem sikerült országot azonosítani ezen a helyen",
+    "retryBtn": "Újrapróbálás",
+    "closeBtn": "Bezárás",
+    "limitedCoverage": "Korlátozott lefedettség",
+    "instabilityIndex": "Instabilitási index",
+    "notTracked": "Nem követett — {{country}} nem szerepel a CII tier-1 listán",
+    "intelBrief": "Hírszerzési összefoglaló",
+    "generatingBrief": "Hírszerzési összefoglaló generálása...",
+    "topNews": "Legfontosabb hírek",
+    "activeSignals": "Aktív jelzések",
+    "timeline": "7 napos idővonal",
+    "predictionMarkets": "Előrejelzési piacok",
+    "loadingMarkets": "Előrejelzési piacok betöltése...",
+    "infrastructure": "Infrastruktúra kitettség",
+    "briefUnavailable": "MI összefoglaló nem elérhető — konfigurálja a GROQ_API_KEY-t a Beállításokban.",
+    "cached": "Gyorsítótárazott",
+    "fresh": "Friss",
+    "noMarkets": "Nincsenek aktív piacok ehhez az országhoz.",
+    "loadingIndex": "Index betöltése...",
+    "components": {
+      "unrest": "Zavargás",
+      "conflict": "Konfliktus",
+      "security": "Biztonság",
+      "information": "Információ"
+    },
+    "signals": {
+      "protests": "tüntetések",
+      "militaryAir": "kat. repülőgépek",
+      "militarySea": "kat. hajók",
+      "outages": "kimaradások",
+      "earthquakes": "földrengések",
+      "displaced": "menekültek",
+      "climate": "Klímastressz",
+      "conflictEvents": "konfliktus események",
+      "activeStrikes": "aktív csapások",
+      "aviationDisruptions": "repülőtéri zavarok",
+      "gpsJammingZones": "GPS zavarási zónák"
+    },
+    "timeAgo": {
+      "m": "{{count}} perce",
+      "h": "{{count}} órája",
+      "d": "{{count}} napja"
+    },
+    "infra": {
+      "pipeline": "Csővezetékek",
+      "cable": "Tenger alatti kábelek",
+      "datacenter": "Adatközpontok",
+      "base": "Katonai bázisok",
+      "nuclear": "Közeli nukleáris létesítmények",
+      "port": "Kikötők"
+    },
+    "levels": {
+      "critical": "Kritikus",
+      "high": "Magas",
+      "elevated": "Emelt",
+      "moderate": "Mérsékelt",
+      "normal": "Normál",
+      "low": "Alacsony"
+    },
+    "trends": {
+      "rising": "Emelkedő",
+      "falling": "Csökkenő",
+      "stable": "Stabil"
+    },
+    "militaryActivity": "Katonai tevékenység",
+    "economicIndicators": "Gazdasági mutatók",
+    "ownFlights": "Saját járatok",
+    "foreignFlights": "Külföldi járatok",
+    "navalVessels": "Haditengerészeti hajók",
+    "foreignPresence": "Külföldi jelenlét",
+    "nearestBases": "Legközelebbi katonai bázisok",
+    "noBasesNearby": "Nincsenek közeli bázisok 600 km-en belül.",
+    "noInfrastructure": "Nem található kritikus infrastruktúra 600 km-en belül.",
+    "noGeometry": "Nem áll rendelkezésre geometria az infrastruktúra korrelációhoz.",
+    "noSignals": "Nincsenek friss, magas súlyosságú jelzések.",
+    "assessmentUnavailable": "Értékelés nem elérhető.",
+    "noNews": "Nincs friss országspecifikus tudósítás.",
+    "noIndicators": "Nincsenek országspecifikus mutatók.",
+    "nearbyPorts": "Közeli kikötők",
+    "detected": "Észlelve",
+    "notDetected": "Nem",
+    "ciiUnavailable": "CII pontszám nem elérhető ehhez az országhoz.",
+    "chips": {
+      "criticalNews": "Kritikus hírek",
+      "protests": "Tüntetések",
+      "militaryAir": "Katonai légi",
+      "navalVessels": "Haditengerészeti hajók",
+      "outages": "Kimaradások",
+      "aisDisruptions": "AIS zavarok",
+      "satelliteFires": "Műholdas tüzek",
+      "temporalAnomalies": "Időbeli anomáliák",
+      "cyberThreats": "Kiberfenyegetések",
+      "earthquakes": "Földrengések",
+      "displaced": "Menekültek",
+      "climateStress": "Klímastressz",
+      "conflictEvents": "Konfliktus események",
+      "activeStrikes": "Aktív csapások",
+      "doNotTravel": "Ne utazzon",
+      "reconsiderTravel": "Fontolja meg az utazást",
+      "exerciseCaution": "Járjon el óvatosan",
+      "advisory": "Figyelmeztetés",
+      "activeSirens": "Aktív szirénák",
+      "sirens24h": "Szirénák / 24ó",
+      "aviationDisruptions": "Légiforgalmi zavarok",
+      "gpsJammingZones": "GPS zavarási zónák"
+    },
+    "fallback": {
+      "instabilityIndex": "**Instabilitási index: {{score}}/100** ({{level}}, {{trend}})",
+      "protestsDetected": "{{count}} aktív tüntetés észlelve",
+      "aircraftTracked": "{{count}} katonai repülőgép követve",
+      "vesselsTracked": "{{count}} katonai hajó követve",
+      "internetOutages": "{{count}} internetes kimaradás",
+      "recentEarthquakes": "{{count}} közelmúltbeli földrengés",
+      "stockIndex": "Tőzsdeindex: {{value}}",
+      "recentHeadlines": "**Friss címsorok:**",
+      "activeStrikes": "{{count}} aktív csapás észlelve"
+    },
+    "countryFacts": "Országadatok",
+    "loadingFacts": "Országadatok betöltése...",
+    "noFacts": "Országadatok nem elérhetők.",
+    "facts": {
+      "headOfState": "Államfő",
+      "population": "Lakosság",
+      "capital": "Főváros",
+      "languages": "Nyelvek",
+      "currencies": "Pénznemek",
+      "area": "Terület"
+    }
+  },
+  "header": {
+    "world": "VILÁG",
+    "tech": "TECH",
+    "live": "ÉLŐ",
+    "cached": "GYORSÍTÓTÁRAZOTT",
+    "unavailable": "NEM ELÉRHETŐ",
+    "search": "Keresés",
+    "settings": "BEÁLLÍTÁSOK",
+    "sources": "FORRÁSOK",
+    "copyLink": "Hivatkozás",
+    "downloadApp": "Alkalmazás letöltése",
+    "fullscreen": "Teljes képernyő",
+    "pinMap": "Térkép rögzítése felülre",
+    "selectRegion": "Régió kiválasztása",
+    "viewOnGitHub": "Megtekintés a GitHub-on",
+    "filterSources": "Források szűrése...",
+    "sourcesEnabled": "{{enabled}}/{{total}} engedélyezve",
+    "finance": "PÉNZÜGY",
+    "commodity": "NYERSANYAG",
+    "toggleTheme": "Sötét/világos mód váltása",
+    "panelDisplayCaption": "Válassza ki, mely panelek jelenjenek meg az irányítópulton",
+    "tabGeneral": "Általános",
+    "tabSettings": "Beállítások",
+    "tabPanels": "Panelek",
+    "tabSources": "Források",
+    "languageLabel": "Nyelv",
+    "sourceRegionAll": "Összes",
+    "sourceRegionWorldwide": "Világszerte",
+    "sourceRegionUS": "Egyesült Államok",
+    "sourceRegionMiddleEast": "Közel-Kelet",
+    "sourceRegionAfrica": "Afrika",
+    "sourceRegionLatAm": "Latin-Amerika",
+    "sourceRegionAsiaPacific": "Ázsia-Csendes-óceán",
+    "sourceRegionEurope": "Európa",
+    "sourceRegionHungary": "Magyarország",
+    "sourceRegionTopical": "Tematikus",
+    "sourceRegionIntel": "Hírszerzés",
+    "sourceRegionTechNews": "Tech hírek",
+    "sourceRegionAiMl": "MI & ML",
+    "sourceRegionStartupsVc": "Startupok & VC",
+    "sourceRegionRegionalTech": "Regionális ökoszisztémák",
+    "sourceRegionDeveloper": "Fejlesztő",
+    "sourceRegionCybersecurity": "Kiberbiztonság",
+    "sourceRegionTechPolicy": "Szabályozás & kutatás",
+    "sourceRegionTechMedia": "Média & podcastok",
+    "sourceRegionMarkets": "Piacok & elemzés",
+    "sourceRegionFixedIncomeFx": "Fix kamatozású & deviza",
+    "sourceRegionCommodities": "Nyersanyagok",
+    "sourceRegionCryptoDigital": "Kripto & digitális",
+    "sourceRegionCentralBanks": "Központi bankok & gazdaság",
+    "sourceRegionDeals": "Ügyletek & vállalati",
+    "sourceRegionFinRegulation": "Pénzügyi szabályozás",
+    "sourceRegionGulfMena": "Öböl & MENA",
+    "filterPanels": "Panelek szűrése...",
+    "resetLayout": "Elrendezés visszaállítása",
+    "resetLayoutTooltip": "Alapértelmezett panel elrendezés visszaállítása",
+    "unsavedChanges": "Mentetlen panel módosítások vannak. Elveti őket?",
+    "panelCatCore": "Alapvető",
+    "panelCatIntelligence": "Hírszerzés",
+    "panelCatCorrelation": "Korreláció",
+    "panelCatRegionalNews": "Regionális hírek",
+    "panelCatMarketsFinance": "Piacok & pénzügy",
+    "panelCatTopical": "Tematikus",
+    "panelCatDataTracking": "Adatok & követés",
+    "panelCatTechAi": "Tech & MI",
+    "panelCatStartupsVc": "Startupok & VC",
+    "panelCatSecurityPolicy": "Biztonság & szabályozás",
+    "panelCatMarkets": "Piacok",
+    "panelCatFixedIncomeFx": "Fix kamatozású & deviza",
+    "panelCatCommodities": "Nyersanyagok",
+    "panelCatCryptoDigital": "Kripto & digitális",
+    "panelCatCentralBanks": "Központi bankok & gazd.",
+    "panelCatDeals": "Ügyletek & intézményi",
+    "panelCatGulfMena": "Öböl & MENA",
+    "panelCatTradePolicy": "Kereskedelempolitika",
+    "panelCatCommodityPrices": "Árak & piacok",
+    "panelCatMining": "Bányászat & ellátási lánc",
+    "panelCatCommodityEcon": "Gazdaság & kereskedelem",
+    "panelCatHappyNews": "Jó hírek",
+    "panelCatHappyPlanet": "Bolygó & adakozás"
+  },
+  "panels": {
+    "liveNews": "Élő hírek",
+    "markets": "Piacok",
+    "map": "Globális helyzet",
+    "techMap": "Globális tech",
+    "techHubs": "Népszerű tech központok",
+    "status": "Rendszer állapot",
+    "insights": "MI elemzések",
+    "strategicPosture": "MI stratégiai helyzet",
+    "cii": "Országinstabilitás",
+    "strategicRisk": "Stratégiai kockázat áttekintés",
+    "intel": "Hírszerzési hírfolyam",
+    "gdeltIntel": "Élő hírszerzés",
+    "cascade": "Infrastruktúra kaszkád",
+    "hungary": "Magyarország Hírek",
+    "politics": "Világhírek",
+    "us": "USA Hírek",
+    "europe": "Európa Hírek",
+    "middleeast": "Közel-Kelet",
+    "africa": "Afrika",
+    "latam": "Latin-Amerika",
+    "asia": "Ázsia-Csendes-óceán",
+    "energy": "Energia & erőforrások",
+    "energyComplex": "Energia komplexum",
+    "gov": "Kormányzat (Magyarország & USA)",
+    "thinktanks": "Agytrösztök",
+    "polymarket": "Előrejelzések",
+    "commodities": "Fémek & anyagok",
+    "economic": "Makro stressz",
+    "tradePolicy": "Kereskedelempolitika",
+    "supplyChain": "Ellátási lánc",
+    "finance": "Pénzügyi",
+    "tech": "Technológia",
+    "crypto": "Kripto",
+    "heatmap": "Szektortérkép",
+    "ai": "MI/ML",
+    "layoffs": "Elbocsátás figyelő",
+    "monitors": "Saját figyelők",
+    "satelliteFires": "Tüzek",
+    "macroSignals": "Piaci rezsim",
+    "etfFlows": "BTC ETF figyelő",
+    "stablecoins": "Stablecoinok",
+    "deduction": "Helyzet levezetés",
+    "ucdpEvents": "Fegyveres konfliktus események",
+    "giving": "Globális adakozás",
+    "displacement": "UNHCR menekültmozgás",
+    "climate": "Klímaanomáliák",
+    "populationExposure": "Lakossági kitettség",
+    "securityAdvisories": "Biztonsági figyelmeztetések",
+    "orefSirens": "Izraeli szirénák",
+    "telegramIntel": "Telegram hírszerzés",
+    "startups": "Startupok & VC",
+    "vcblogs": "VC elemzések & esszék",
+    "regionalStartups": "Globális startup hírek",
+    "unicorns": "Unikornis figyelő",
+    "accelerators": "Gyorsítók & demo napok",
+    "security": "Kiberbiztonság",
+    "policy": "MI szabályozás & reguláció",
+    "regulation": "MI szabályozási műszerfal",
+    "hardware": "Félvezetők & hardver",
+    "cloud": "Felhő & infrastruktúra",
+    "dev": "Fejlesztői közösség",
+    "github": "GitHub felkapott",
+    "ipo": "IPO & SPAC",
+    "funding": "Finanszírozás & VC",
+    "producthunt": "Product Hunt",
+    "events": "Tech események",
+    "serviceStatus": "Szolgáltatás állapot",
+    "techReadiness": "Technológiai felkészültségi index",
+    "gccInvestments": "GCC befektetések",
+    "geoHubs": "Geopolitikai központok",
+    "liveWebcams": "Élő webkamerák",
+    "windyWebcams": "Windy élő webkamera",
+    "gulfEconomies": "Öböl-gazdaságok",
+    "groceryBasket": "Élelmiszer index",
+    "groceryItem": "Termék",
+    "bigmac": "Big Mac index",
+    "bigmacDesc": "Big Mac árak a Közel-Kelet országaiban (Big Mac Index)",
+    "bigmacWow": "HoH",
+    "bigmacCountry": "Ország",
+    "groceryBasketDesc": "Élelmiszer kosár árösszehasonlítás 24 ország között világszerte",
+    "gulfIndices": "Öböl indexek",
+    "gulfCurrencies": "Öböl pénznemek",
+    "gulfOil": "Öböl olaj",
+    "airlineIntel": "✈️ Légitársasági hírszerzés",
+    "consumerPrices": "Fogyasztói árak"
+  },
+  "commands": {
+    "prefixes": {
+      "map": "Térkép",
+      "panel": "Panel",
+      "brief": "Összefoglaló"
+    },
+    "categories": {
+      "navigate": "Navigáció",
+      "layers": "Rétegek",
+      "panels": "Panelek",
+      "view": "Nézet",
+      "actions": "Műveletek",
+      "country": "Ország"
+    },
+    "regions": {
+      "global": "Globális nézet",
+      "mena": "Közel-Kelet & Észak-Afrika",
+      "eu": "Európa",
+      "asia": "Ázsia-Csendes-óceán",
+      "america": "Amerika",
+      "africa": "Afrika",
+      "latam": "Latin-Amerika",
+      "oceania": "Óceánia"
+    },
+    "tips": {
+      "map": "Írjon be egy országnevet a térképen való odaugráshoz",
+      "panel": "Írjon be egy panelnevet a görgetéshez",
+      "brief": "Írjon be egy országnevet a hírszerzési összefoglalóhoz",
+      "layers": "Írja be, hogy \"katonai\" vagy \"pénzügy\" a réteg előbeállításokhoz",
+      "time": "Írja be, hogy \"1h\", \"24h\" vagy \"7d\" az időszűréshez",
+      "settings": "Írja be, hogy \"sötét mód\", \"beállítások\" vagy \"teljes képernyő\"",
+      "flight": "Élő járatok keresése hívójel alapján (PRO)",
+      "mapExample": "irán",
+      "panelExample": "hírek",
+      "briefExample": "brief kína",
+      "layersExample": "katonai rétegek",
+      "timeExample": "24h",
+      "settingsExample": "sötét mód",
+      "flightExample": "UAE528"
+    },
+    "keywords": {
+      "military": "katonai",
+      "finance": "pénzügy",
+      "infrastructure": "infrastruktúra",
+      "intelligence": "hírszerzés",
+      "news": "hírek",
+      "dark": "sötét",
+      "light": "világos",
+      "settings": "beállítások",
+      "fullscreen": "teljes képernyő",
+      "refresh": "frissítés"
+    },
+    "labels": {
+      "layers": {
+        "military": "Katonai rétegek megjelenítése",
+        "finance": "Pénzügyi rétegek megjelenítése",
+        "infra": "Infrastruktúra rétegek megjelenítése",
+        "intel": "Hírszerzési rétegek megjelenítése",
+        "all": "Összes réteg engedélyezése",
+        "none": "Összes réteg elrejtése",
+        "minimal": "Minimális rétegek (konfliktusok + gócpontok)"
+      },
+      "layer": {
+        "ais": "AIS hajókövetés ki/be",
+        "flights": "Katonai járatok ki/be",
+        "conflicts": "Konfliktuszónák ki/be",
+        "hotspots": "Hírszerzési gócpontok ki/be",
+        "protests": "Tüntetések & zavargások ki/be",
+        "cables": "Tenger alatti kábelek ki/be",
+        "pipelines": "Csővezetékek ki/be",
+        "nuclear": "Nukleáris létesítmények ki/be",
+        "bases": "Katonai bázisok ki/be",
+        "fires": "Műholdas tüzek ki/be",
+        "weather": "Időjárás fedvény ki/be",
+        "cyber": "Kiberfenyegetések ki/be",
+        "displacement": "Menekültáramlások ki/be",
+        "climate": "Klímaanomáliák ki/be",
+        "outages": "Internetes kimaradások ki/be",
+        "tradeRoutes": "Kereskedelmi útvonalak ki/be"
+      },
+      "view": {
+        "dark": "Váltás sötét módra",
+        "light": "Váltás világos módra",
+        "fullscreen": "Teljes képernyő ki/be",
+        "settings": "Beállítások megnyitása",
+        "refresh": "Összes adat frissítése"
+      },
+      "time": {
+        "1h": "Események megjelenítése az elmúlt órából",
+        "6h": "Események megjelenítése az elmúlt 6 órából",
+        "24h": "Események megjelenítése az elmúlt 24 órából",
+        "48h": "Események megjelenítése az elmúlt 48 órából",
+        "7d": "Események megjelenítése az elmúlt 7 napból"
+      }
+    }
+  },
+  "modals": {
+    "search": {
+      "placeholder": "Keresés vagy parancs beírása...",
+      "hint": "Keresés • Országok • Rétegek • Panelek • Navigáció • Beállítások",
+      "placeholderTech": "Keresés vagy parancs beírása...",
+      "hintTech": "Keresés • Cégek • MI laborok • Rétegek • Navigáció • Beállítások",
+      "placeholderFinance": "Keresés vagy parancs beírása...",
+      "hintFinance": "Keresés • Tőzsdék • Piacok • Rétegek • Navigáció • Beállítások",
+      "recent": "Legutóbbi keresések",
+      "empty": "Adatok keresése vagy parancsok futtatása",
+      "noResults": "Nincs találat",
+      "commands": "Parancsok",
+      "results": "Találatok",
+      "seeAllCommands": "Összes parancs megtekintése",
+      "hideCommandList": "Vissza",
+      "navigate": "navigáció",
+      "select": "kiválasztás",
+      "close": "bezárás",
+      "types": {
+        "country": "Ország",
+        "news": "Hír",
+        "hotspot": "Gócpont",
+        "market": "Piac",
+        "prediction": "Előrejelzés",
+        "conflict": "Konfliktus",
+        "base": "Katonai bázis",
+        "pipeline": "Csővezeték",
+        "cable": "Tenger alatti kábel",
+        "datacenter": "Adatközpont",
+        "earthquake": "Földrengés",
+        "outage": "Kimaradás",
+        "nuclear": "Nukleáris létesítmény",
+        "irradiator": "Besugárzó",
+        "techcompany": "Tech cég",
+        "ailab": "MI labor",
+        "startup": "Startup",
+        "techevent": "Tech esemény",
+        "techhq": "Tech központ",
+        "accelerator": "Gyorsító",
+        "flight": "Járat"
+      },
+      "flightOnGround": "Földön",
+      "flightAirborne": "FL{{fl}} · {{kts}} kts",
+      "flightMilitary": "Katonai · {{type}} · FL{{fl}}",
+      "flightMilitaryOnGround": "Katonai · {{type}} · földön",
+      "flightSearchHint": "Nyomjon Enter-t vagy kattintson az élő pozíció kereséséhez"
+    },
+    "signal": {
+      "title": "HÍRSZERZÉSI EREDMÉNY",
+      "soundAlerts": "Hangjelzések",
+      "dismiss": "Elvetés",
+      "confidence": "Megbízhatóság",
+      "country": "Ország:",
+      "scoreChange": "Pontszám változás:",
+      "instabilityLevel": "Instabilitási szint:",
+      "primaryDriver": "Elsődleges hajtóerő:",
+      "location": "Helyszín:",
+      "eventTypes": "Eseménytípusok:",
+      "eventCount": "Események száma:",
+      "eventCountValue": "{{count}} esemény 24 óra alatt",
+      "source": "Forrás:",
+      "countriesAffected": "Érintett országok:",
+      "impactLevel": "Hatás szintje:",
+      "focalPoints": "KORRELÁLT FÓKUSZPONTOK",
+      "newsCorrelation": "HÍRKORRELÁCIÓ",
+      "viewOnMap": "Megtekintés a térképen",
+      "whyItMatters": "Miért fontos:",
+      "action": "Intézkedés:",
+      "note": "Megjegyzés:",
+      "suppress": "Kifejezés elnyomása",
+      "suppressed": "Elnyomva",
+      "predictionLeading": "Előrejelzés vezető",
+      "newsLeading": "Hír vezető",
+      "silentDivergence": "Csendes divergencia",
+      "velocitySpike": "Sebesség kiugrás",
+      "keywordSpike": "Kulcsszó kiugrás",
+      "convergence": "Konvergencia",
+      "triangulation": "Trianguláció",
+      "flowDrop": "Áramlás csökkenés",
+      "flowPriceDivergence": "Áramlás/ár divergencia",
+      "geoConvergence": "Földrajzi konvergencia",
+      "marketMove": "Piaci mozgás magyarázva",
+      "sectorCascade": "Szektorális kaszkád",
+      "militarySurge": "Katonai hullám"
+    },
+    "story": {
+      "generating": "Történet generálása...",
+      "close": "Bezárás",
+      "shareTitle": "Történet megosztása",
+      "save": "Mentés",
+      "whatsapp": "WhatsApp",
+      "twitter": "X",
+      "linkedin": "LinkedIn",
+      "copyLink": "Hivatkozás",
+      "saved": "Mentve!",
+      "copied": "Másolva!",
+      "opening": "Megnyitás...",
+      "error": "Nem sikerült a történet generálása."
+    },
+    "mobileWarning": {
+      "title": "Mobil nézet",
+      "description": "Egy egyszerűsített mobil verziót lát, amely a MENA régióra fókuszál az alapvető rétegekkel.",
+      "tip": "Tipp: Használja a nézet gombokat (GLOBÁLIS/US/MENA) a régiók közötti váltáshoz. Koppintson a jelölőkre a részletekért.",
+      "dontShowAgain": "Ne jelenjen meg újra",
+      "gotIt": "Értem"
+    },
+    "downloadBanner": {
+      "title": "Asztali verzió elérhető",
+      "description": "Natív teljesítmény, biztonságos helyi kulcstárolás, offline térképcsempék.",
+      "macSilicon": "macOS (Apple Silicon)",
+      "macIntel": "macOS (Intel)",
+      "windows": "Windows (.exe)",
+      "linux": "Linux (.AppImage)",
+      "showAllPlatforms": "Összes platform megjelenítése",
+      "showLess": "Kevesebb",
+      "dismiss": "Elvetés"
+    },
+    "runtimeConfig": {
+      "title": "Asztali konfiguráció",
+      "alertTitle": {
+        "configured": "Asztali beállítások konfigurálva",
+        "needsKeys": "Konfigurálja az API kulcsokat a funkciók feloldásához",
+        "some": "Néhány funkcióhoz API kulcsok szükségesek"
+      },
+      "openSettings": "Beállítások megnyitása",
+      "reserveEarlyAccess": "Foglaljon korai hozzáférést",
+      "skipSetup": "Hagyja ki a beállítást — egyetlen World Monitor licenc mindent felold. Csatlakozzon a várólistához a korai hozzáférésért.",
+      "summary": {
+        "desktop": "Asztali mód",
+        "web": "Web mód (csak olvasható, szerver által kezelt hitelesítő adatok)",
+        "secrets": "helyi titkok konfigurálva",
+        "available": "elérhető funkciók"
+      },
+      "status": {
+        "ready": "Kész",
+        "staged": "Előkészítve",
+        "needsKeys": "Kulcsok szükségesek",
+        "invalid": "Érvénytelen",
+        "missing": "Hiányzik",
+        "valid": "Érvényes",
+        "looksInvalid": "Érvénytelennek tűnik"
+      },
+      "placeholder": {
+        "setSecret": "Titok beállítása",
+        "staged": "Előkészítve (mentés OK-kal)"
+      },
+      "help": {
+        "URLHAUS_AUTH_KEY": "URLhaus és ThreatFox API-khoz használatos.",
+        "OTX_API_KEY": "Opcionális gazdagítási forrás a kiberfenyegetés réteghez.",
+        "ABUSEIPDB_API_KEY": "Opcionális gazdagítási forrás rosszindulatú IP reputációhoz.",
+        "FINNHUB_API_KEY": "Valós idejű részvényárfolyamok és piaci adatok.",
+        "NASA_FIRMS_API_KEY": "Tűzinformációs erőforrás-kezelő rendszer.",
+        "OLLAMA_API_URL": "pl. http://127.0.0.1:11434 (Ollama) vagy http://127.0.0.1:1234/v1 (LM Studio) — OpenAI-kompatibilis végpont.",
+        "OLLAMA_MODEL": "pl. llama3.1:8b — az összegzéshez használt modell címke."
+      }
+    },
+    "settingsWindow": {
+      "validating": "API kulcsok érvényesítése...",
+      "saved": "Beállítások mentve",
+      "failed": "Mentés sikertelen: {{error}}",
+      "verifyFailed": "Ellenőrzött kulcsok mentve. Sikertelen: {{errors}}",
+      "verboseOn": "Részletes sidecar naplózás BE (mentve)",
+      "verboseOff": "Részletes sidecar naplózás KI (mentve)",
+      "invokeFail": "Nem sikerült a(z) {{command}} futtatása. Ellenőrizze az asztali naplót.",
+      "openLogs": "Naplómappa megnyitva",
+      "openApiLog": "API napló megnyitva",
+      "sidecarError": "Nem sikerült elérni a sidecar-t a részletes mód váltásához",
+      "noTraffic": "Még nincs rögzített forgalom.",
+      "sidecarUnreachable": "Sidecar nem elérhető.",
+      "logCleared": "Napló törölve.",
+      "worldMonitor": {
+        "tabLabel": "World Monitor",
+        "heroTitle": "Egy kulcs. Minden benne van.",
+        "heroDescription": "Egyetlen World Monitor licenc helyettesíti az összes API kulcsot és LLM szolgáltatót, amelyet egyébként saját maga konfigurálna. MI összefoglalók, valós idejű hírszerzés, piaci adatok, konfliktus követés, tűzészlelés, műholdképek — minden működik, minden kezelt, nulla beállítás.",
+        "apiKey": {
+          "title": "Licenckulcs",
+          "placeholder": "wm_xxxxxxxxxxxxxxxxxxxxxxxx",
+          "description": "Illessze be a licencét, hogy azonnal feloldja az összes adatforrást és MI funkciót.",
+          "statusValid": "LICENCELT",
+          "statusMissing": "NINCS LICENC"
+        },
+        "dividerOr": "VAGY",
+        "register": {
+          "title": "Foglalja le helyét",
+          "description": "Készülünk a World Monitor licencek bevezetésére. Regisztráljon most és legyen az elsők között — a korai tagok elsőbbségi hozzáférést és alapító tagi árazást kapnak.",
+          "emailPlaceholder": "az@emailcime.hu",
+          "submitBtn": "Csatlakozás a várólistához",
+          "submitting": "Küldés...",
+          "success": "Felkerült a listára! Elsőként értesítjük.",
+          "alreadyRegistered": "Már szerepel a várólistán.",
+          "error": "A regisztráció sikertelen. Kérjük, próbálja újra.",
+          "invalidEmail": "Kérjük, adjon meg egy érvényes e-mail címet."
+        },
+        "byokTitle": "Vagy hozza saját kulcsait",
+        "byokDescription": "Teljes kontrollt szeretne? Lépjen az API kulcsok és LLM-ek fülekre az egyes adatforrások és MI szolgáltatók egyedi konfigurálásához."
+      },
+      "table": {
+        "time": "Idő",
+        "method": "Módszer",
+        "path": "Útvonal",
+        "status": "Állapot",
+        "duration": "Időtartam"
+      }
+    },
+    "countryIntel": {
+      "identifying": "Ország azonosítása...",
+      "locating": "Régió meghatározása...",
+      "instabilityIndex": "Instabilitási index",
+      "protests": "tüntetések",
+      "militaryAircraft": "kat. repülőgépek",
+      "militaryVessels": "kat. hajók",
+      "outages": "kimaradások",
+      "earthquakes": "földrengések",
+      "loadingIndex": "Index betöltése...",
+      "loadingMarkets": "Előrejelzési piacok betöltése...",
+      "generatingBrief": "Hírszerzési összefoglaló generálása...",
+      "cached": "Gyorsítótárazott",
+      "fresh": "Friss",
+      "noMarkets": "Nem találhatók előrejelzési piacok",
+      "predictionMarkets": "Előrejelzési piacok",
+      "unavailable": "MI összefoglaló nem elérhető — konfigurálja a GROQ_API_KEY-t a Beállításokban."
+    },
+    "countryBrief": {
+      "identifying": "Ország azonosítása...",
+      "locating": "Régió meghatározása...",
+      "limitedCoverage": "Korlátozott lefedettség",
+      "instabilityIndex": "Instabilitási index",
+      "notTracked": "Nem követett — {{country}} nem szerepel a CII tier-1 listán",
+      "intelBrief": "Hírszerzési összefoglaló",
+      "generatingBrief": "Hírszerzési összefoglaló generálása...",
+      "topNews": "Legfontosabb hírek",
+      "activeSignals": "Aktív jelzések",
+      "timeline": "7 napos idővonal",
+      "predictionMarkets": "Előrejelzési piacok",
+      "loadingMarkets": "Előrejelzési piacok betöltése...",
+      "infrastructure": "Infrastruktúra kitettség",
+      "briefUnavailable": "MI összefoglaló nem elérhető — konfigurálja a GROQ_API_KEY-t a Beállításokban.",
+      "cached": "Gyorsítótárazott",
+      "fresh": "Friss",
+      "noMarkets": "Nem találhatók előrejelzési piacok",
+      "loadingIndex": "Index betöltése...",
+      "components": {
+        "unrest": "Zavargás",
+        "conflict": "Konfliktus",
+        "security": "Biztonság",
+        "information": "Információ"
+      },
+      "signals": {
+        "protests": "tüntetések",
+        "militaryAir": "kat. repülőgépek",
+        "militarySea": "kat. hajók",
+        "outages": "kimaradások",
+        "earthquakes": "földrengések",
+        "displaced": "menekültek",
+        "climate": "Klímastressz",
+        "conflictEvents": "konfliktus események",
+        "activeStrikes": "aktív csapások",
+        "aviationDisruptions": "repülőtéri zavarok",
+        "gpsJammingZones": "GPS zavarási zónák"
+      },
+      "timeAgo": {
+        "m": "{{count}} perce",
+        "h": "{{count}} órája",
+        "d": "{{count}} napja"
+      },
+      "infra": {
+        "pipeline": "Csővezetékek",
+        "cable": "Tenger alatti kábelek",
+        "datacenter": "Adatközpontok",
+        "base": "Katonai bázisok",
+        "nuclear": "Nukleáris létesítmények",
+        "port": "Kikötők"
+      },
+      "levels": {
+        "critical": "Kritikus",
+        "high": "Magas",
+        "elevated": "Emelt",
+        "moderate": "Mérsékelt",
+        "normal": "Normál",
+        "low": "Alacsony"
+      },
+      "trends": {
+        "rising": "Emelkedő",
+        "falling": "Csökkenő",
+        "stable": "Stabil"
+      },
+      "fallback": {
+        "instabilityIndex": "**Instabilitási index: {{score}}/100** ({{level}}, {{trend}})",
+        "protestsDetected": "{{count}} aktív tüntetés észlelve",
+        "aircraftTracked": "{{count}} katonai repülőgép követve",
+        "vesselsTracked": "{{count}} katonai hajó követve",
+        "activeStrikes": "{{count}} aktív csapás észlelve",
+        "internetOutages": "{{count}} internetes kimaradás",
+        "recentEarthquakes": "{{count}} közelmúltbeli földrengés",
+        "stockIndex": "Tőzsdeindex: {{value}}",
+        "recentHeadlines": "**Friss címsorok:**"
+      }
+    }
+  },
+  "components": {
+    "webcams": {
+      "expand": "Kibontás",
+      "paused": "Webkamerák szüneteltetve",
+      "pausedIdle": "Webkamerák szüneteltetve — mozgassa az egeret a folytatáshoz",
+      "regions": {
+        "hungary": "MAGYARORSZÁG",
+        "iran": "IRÁNI TÁMADÁSOK",
+        "all": "ÖSSZES",
+        "mideast": "KÖZEL-KELET",
+        "europe": "EURÓPA",
+        "americas": "AMERIKA",
+        "asia": "ÁZSIA",
+        "space": "ŰRKUTATÁS"
+      }
+    },
+    "pinnedWebcams": {
+      "pinFromMap": "Rögzítsen webkamerát a térképről"
+    },
+    "positiveNewsFeed": {
+      "noStories": "Még nincsenek történetek ebben a kategóriában"
+    },
+    "breakthroughsTicker": {
+      "noData": "Még nincsenek tudományos áttörések"
+    },
+    "airlineIntel": {
+      "noOpsData": "Nincs üzemeltetési adat — betöltés…",
+      "noFlights": "Nincsenek járatok — válasszon repülőteret a beállításokban.",
+      "noCarrierData": "Még nincsenek légitársasági adatok.",
+      "noTrackingData": "Nincs repülőgép-követési adat.",
+      "noNews": "Nincsenek légiközlekedési hírek.",
+      "enterRoute": "Adja meg az útvonalat és keressen árakat.",
+      "cachedInsight": "Gyorsítótárazott elemzés",
+      "demoMode": "DEMÓ MÓD",
+      "pricesIndicative": "Minden ár tájékoztató jellegű"
+    },
+    "goodThingsDigest": {
+      "noStories": "Nincsenek elérhető történetek",
+      "summarizing": "Összegzés…"
+    },
+    "progressCharts": {
+      "noData": "Nem állnak rendelkezésre haladási adatok"
+    },
+    "monitor": {
+      "placeholder": "Kulcsszavak (vesszővel elválasztva)",
+      "add": "+ Figyelő hozzáadása",
+      "addKeywords": "Adjon hozzá kulcsszavakat a hírek figyeléséhez",
+      "noMatches": "Nincs találat {{count}} cikkben",
+      "showingMatches": "{{count}}/{{total}} találat megjelenítve",
+      "match": "találat",
+      "matches": "találat"
+    },
+    "regulation": {
+      "dashboard": "MI szabályozási műszerfal",
+      "timeline": "Idővonal",
+      "deadlines": "Határidők",
+      "regulations": "Szabályozások",
+      "countries": "Országok",
+      "recentActions": "Legutóbbi szabályozási intézkedések (elmúlt 12 hónap)",
+      "upcomingDeadlines": "Közelgő megfelelési határidők",
+      "activeRegulations": "Hatályos szabályozások",
+      "proposedRegulations": "Javasolt szabályozások",
+      "globalLandscape": "Globális szabályozási környezet",
+      "emptyActions": "Nincsenek friss szabályozási intézkedések",
+      "emptyDeadlines": "Nincsenek közelgő megfelelési határidők a következő 12 hónapban",
+      "keyProvisions": "Fő rendelkezések",
+      "learnMore": "Tudjon meg többet",
+      "active": "Hatályos",
+      "proposed": "Javasolt",
+      "updated": "Frissítve",
+      "actionsCount": "{{count}} intézkedés",
+      "deadlinesCount": "{{count}} határidő",
+      "days": "nap",
+      "activeCount": "Hatályos szabályozások ({{count}})",
+      "proposedCount": "Javasolt szabályozások ({{count}})",
+      "moreProvisions": "+{{count}} további...",
+      "source": "Forrás",
+      "stances": {
+        "strict": "Szigorú",
+        "moderate": "Mérsékelt",
+        "permissive": "Megengedő",
+        "undefined": "Meghatározatlan"
+      }
+    },
+    "economic": {
+      "indicators": "Mutatók",
+      "gov": "Korm.",
+      "centralBanks": "Központi bankok",
+      "noIndicatorData": "Még nincsenek mutatóadatok – a FRED betölthet",
+      "fredKeyMissing": "FRED API kulcs szükséges. Adja hozzá a Beállításokban a gazdasági mutatók engedélyezéséhez.",
+      "noSpending": "Nincsenek friss kormányzati megbízások",
+      "awards": "megbízás",
+      "in": "-ban/-ben",
+      "noBisData": "BIS adatok átmenetileg nem elérhetők - újrapróbálás folyamatban",
+      "policyRate": "Alapkamat",
+      "exchangeRate": "Árfolyam",
+      "creditToGdp": "Hitel / GDP",
+      "realEer": "Reál EER",
+      "change": "Változás",
+      "cut": "csökkentés",
+      "hike": "emelés",
+      "hold": "tartás",
+      "pressure": {
+        "label": "Makro nyomás",
+        "stress": "Stressz",
+        "watch": "Figyelés",
+        "steady": "Stabil",
+        "stressDetail": "A volatilitás és a görbe nyomás emelt szintű.",
+        "watchDetail": "A piaci feltételek szorosabb figyelést igényelnek.",
+        "steadyDetail": "A makro feltételek egyelőre stabilak."
+      },
+      "infoTooltip": "<strong>Makro stressz</strong> Makro mutatók, kormányzati kiadások és központi banki adatok:<ul><li><strong>Mutatók</strong>: VIX, kamatok, hozamgörbe, munkaerő, infláció</li><li><strong>Korm.</strong>: Friss amerikai kormányzati szerződések</li><li><strong>Központi bankok</strong>: BIS alapkamatok és árfolyamadatok</li></ul>"
+    },
+    "energyComplex": {
+      "noData": "Energiaadatok átmenetileg nem elérhetők - újrapróbálás folyamatban",
+      "liveTape": "Élő szalag",
+      "liveTapeSource": "Piaci jegyzések",
+      "infoTooltip": "<strong>Energia komplexum</strong> Fizikai és kereskedhető energiajelzések egy helyen:<ul><li><strong>EIA mutatók</strong>: WTI, Brent, amerikai termelés és készletek</li><li><strong>Élő szalag</strong>: Kereskedhető energia árak, mint nyersolaj és földgáz</li><li><strong>Cél</strong>: A fizikai energia stressz elkülönítése a szélesebb makro és nyersanyag panelektől</li></ul>"
+    },
+    "supplyChain": {
+      "chokepoints": "Szűk keresztmetszetek",
+      "shipping": "Szállítási díjak",
+      "minerals": "Kritikus ásványok",
+      "noChokepoints": "Szűk keresztmetszet adatok betöltése...",
+      "noShipping": "Szállítási díj adatok nem elérhetők",
+      "noMinerals": "Ásványi adatok betöltése...",
+      "fredKeyMissing": "FRED API kulcs szükséges a szállítási díjakhoz — adja hozzá a Beállításokban. Szűk keresztmetszetek és ásványok kulcs nélkül is elérhetők.",
+      "upstreamUnavailable": "Ellátási lánc adatok átmenetileg nem elérhetők — gyorsítótárazott adatok megjelenítése",
+      "spikeAlert": "Kiugrás észlelve — a díj jelentősen meghaladja az 52 hetes átlagot (heti)",
+      "warnings": "figyelmeztetés(ek)",
+      "aisDisruptions": "AIS zavar(ok)",
+      "transit24h": "24ó",
+      "tankers": "tankerek",
+      "cargo": "teherszállító",
+      "wowChange": "HoH változás",
+      "vesselTransits": "Hajóforgalom (180n)",
+      "riskLevel": "Kockázati szint",
+      "routingAction": "Útvonalválasztás",
+      "disruption": "Zavarás",
+      "vessels": "hajók",
+      "incidents7d": "incidens (7n)",
+      "containerRates": "Konténer díjak",
+      "bulkShipping": "Ömlesztett szállítás",
+      "economicIndicators": "Gazdasági mutatók",
+      "corridorDisruption": "Folyosó zavarás",
+      "corridor": "Folyosó",
+      "loadingCorridors": "Folyosó adatok betöltése...",
+      "mineral": "Ásvány",
+      "topProducers": "Fő termelők",
+      "risk": "Kockázat",
+      "sources": "IMF PortWatch / AISStream / CorridorRisk / NGA / USGS",
+      "infoTooltip": "<strong>Ellátási lánc figyelő</strong> Globális logisztika és erőforrás-követés:<ul><li><strong>Szűk keresztmetszetek</strong>: Tengeri tranzit állapot, zavarási pontszámok és hajószámok</li><li><strong>Szállítás</strong>: Baltic Dry Index és fuvardíj trendek</li><li><strong>Ásványok</strong>: Kritikus ásvány koncentrációs kockázat (HHI) és fő termelők</li></ul>Kattintson egy szűk keresztmetszet kártyára a tranzit előzmények diagram kibontásához."
+    },
+    "tradePolicy": {
+      "restrictions": "Korlátozások",
+      "overview": "Áttekintés",
+      "tariffs": "Vámok",
+      "flows": "Kereskedelmi forgalom",
+      "barriers": "Akadályok",
+      "noRestrictions": "Nincsenek aktív kereskedelmi korlátozások",
+      "noOverviewData": "Nem állnak rendelkezésre vámáttekintési adatok",
+      "noTariffData": "Nem állnak rendelkezésre vámadatok",
+      "noFlowData": "Nem állnak rendelkezésre kereskedelmi forgalmi adatok",
+      "noBarriers": "Nem jelentettek kereskedelmi akadályokat",
+      "apiKeyMissing": "WTO API kulcs szükséges — adja hozzá a Beállításokban",
+      "upstreamUnavailable": "WTO adatok átmenetileg nem elérhetők — gyorsítótárazott adatok megjelenítése",
+      "appliedRate": "Alkalmazott díjtétel",
+      "mfnAppliedRate": "MFN alkalmazott díjtétel",
+      "baselineMfnTariff": "Alapszintű MFN vám",
+      "effectiveTariffRateLabel": "Tényleges vámtétel",
+      "gapLabel": "Eltérés",
+      "gapVsMfnLabel": "Eltérés az MFN-hez képest",
+      "noEffectiveCoverageForCountry": "Nincs tényleges díjtétel lefedettség ehhez az országhoz",
+      "effectiveMinusBaseline": "Tényleges díjtétel mínusz WTO MFN alapszint",
+      "wtoBaselineMeta": "WTO MFN alkalmazott díjtétel | {{year}}",
+      "overviewNoteNoEffective": "Ezek az adatok WTO MFN alapszintű díjtételek, nem az egyoldalú vámintézkedésekből eredő aktuális vámteher.",
+      "usBaselineLabel": "Amerikai WTO MFN alapszint",
+      "overviewNoteTail": "Ezek a kártyák WTO alapszintű kötelezettségvállalásokat mutatnak, nem az élő tényleges vámterhet.",
+      "boundRate": "Kötött díjtétel",
+      "exports": "Export",
+      "imports": "Import",
+      "yoyChange": "ÉvÉv változás",
+      "highTariff": "Magas",
+      "moderateTariff": "Mérsékelt",
+      "lowTariff": "Alacsony",
+      "revenue": "Amerikai bevétel",
+      "noRevenueData": "Nem állnak rendelkezésre vámbevételi adatok",
+      "treasuryUnavailable": "Kincstári adatok átmenetileg nem elérhetők",
+      "fytdLabel": "PÉ{{year}} éves kum.",
+      "vsPriorFy": "vs PÉ{{year}}",
+      "sourceWto": "WTO",
+      "sourceTreasury": "Amerikai Kincstár",
+      "colDate": "Dátum",
+      "colMonthly": "Havi",
+      "colFytd": "PÉ éves kum.",
+      "infoTooltip": "<strong>Kereskedelempolitika</strong> WTO alapszintű és vámhatás figyelés:<ul><li><strong>Áttekintés</strong>: WTO MFN alapszintű díjtételek amerikai tényleges díjtétel kontextussal, ha elérhető</li><li><strong>Vámok</strong>: WTO MFN vámtrendek vs az amerikai tényleges vámtétel becslés</li><li><strong>Kereskedelmi forgalom</strong>: Export/import volumenek éves változásokkal</li><li><strong>Akadályok</strong>: Kereskedelem technikai akadályai (TBT/SPS értesítések)</li><li><strong>Bevétel</strong>: Havi amerikai vámbevételi adatok (US Treasury MTS adatok)</li></ul>"
+    },
+    "consumerPrices": {
+      "title": "Fogyasztói árak",
+      "subtitle": "Kosár árkövetés kulcsfontosságú piacokon",
+      "tabs": {
+        "overview": "Áttekintés",
+        "categories": "Kategóriák",
+        "movers": "Mozgók",
+        "spread": "Kereskedői szórás",
+        "health": "Adatminőség"
+      },
+      "essentialsIndex": "Alapvető cikkek index",
+      "valueBasketIndex": "Értékkosár",
+      "wowChange": "HoH",
+      "momChange": "HoH",
+      "retailerSpread": "Kereskedői szórás",
+      "coveragePct": "Lefedettség",
+      "freshnessLag": "Frissesség késés",
+      "noCategories": "Nem állnak rendelkezésre kategória adatok",
+      "noMovers": "Nem állnak rendelkezésre ármozgás adatok",
+      "noSpread": "Nem állnak rendelkezésre kereskedői szórás adatok",
+      "noHealth": "Nincs adatminőségi információ",
+      "upstreamUnavailable": "Fogyasztói ár adatok átmenetileg nem elérhetők",
+      "allCategories": "Összes kategória",
+      "risers": "Emelkedő",
+      "fallers": "Csökkenő",
+      "unitPrice": "Egységár",
+      "freshLabel": "Friss",
+      "staleLabel": "Elavult",
+      "laggingLabel": "Lemaradó",
+      "stalledLabel": "Leállt",
+      "retailer": "Kereskedő",
+      "lastUpdated": "Utolsó frissítés",
+      "retailers": "kereskedők",
+      "items": "tételek",
+      "infoTooltip": "<strong>Fogyasztói árak</strong> Valós idejű kosár árkövetés:<ul><li><strong>Áttekintés</strong>: Alapvető cikkek index, értékkosár és heti változás</li><li><strong>Kategóriák</strong>: Kategóriánkénti ártrendek 30 napos tartománnyal</li><li><strong>Mozgók</strong>: A hét legnagyobb emelkedő és csökkenő tételei</li><li><strong>Szórás</strong>: Árkülönbség a kereskedők között ugyanarra a kosárra</li></ul>Adatok élő kereskedői ár leolvasásból."
+    },
+    "gdelt": {
+      "empty": "Nincsenek friss cikkek ehhez a témához"
+    },
+    "geoHubs": {
+      "tooltip": "<strong>Geopolitikai tevékenységi központok</strong><br>A legtöbb hírakcióval rendelkező régiókat mutatja.<br><br><em>Központtípusok:</em><br>• 🏛️ Fővárosok — Világ fővárosai és kormányzati központok<br>• ⚔️ Konfliktuszónák — Aktív konfliktusterületek<br>• ⚓ Stratégiai — Szűk keresztmetszetek és kulcsfontosságú régiók<br>• 🏢 Szervezetek — ENSZ, NATO, NAÜ stb.<br><br><em>Aktivitási szintek:</em><br>• <span style=\"color: #ff4444\">Magas</span> — Friss hír vagy 70+ pontszám<br>• <span style=\"color: #ff8844\">Emelt</span> — 40-69 pontszám<br>• <span style=\"color: #888\">Alacsony</span> — 40 alatti pontszám<br><br>Kattintson egy központra a helyszínre ugráshoz.",
+      "noActive": "Nincsenek aktív geopolitikai központok",
+      "story": "történet",
+      "stories": "történet",
+      "infoTooltip": "<strong>Geopolitikai tevékenységi központok</strong><br>A legtöbb hírakcióval rendelkező régiókat mutatja.<br><br><em>Központtípusok:</em><br>• 🏛️ Fővárosok — Világ fővárosai és kormányzati központok<br>• ⚔️ Konfliktuszónák — Aktív konfliktusterületek<br>• ⚓ Stratégiai — Szűk keresztmetszetek és kulcsfontosságú régiók<br>• 🏢 Szervezetek — ENSZ, NATO, NAÜ stb.<br><br><em>Aktivitási szintek:</em><br>• <span style=\"color: {{highColor}}\">Magas</span> — Friss hír vagy 70+ pontszám<br>• <span style=\"color: {{elevatedColor}}\">Emelt</span> — 40-69 pontszám<br>• <span style=\"color: {{lowColor}}\">Alacsony</span> — 40 alatti pontszám<br><br>Kattintson egy központra a helyszínre ugráshoz."
+    },
+    "techHubs": {
+      "tooltip": "<strong>Tech központ aktivitás</strong><br>A legtöbb hírakcióval rendelkező tech központokat mutatja.<br><br><em>Aktivitási szintek:</em><br>• <span style=\"color: #00ff88\">Magas</span> — Friss hír vagy 50+ pontszám<br>• <span style=\"color: #ffc800\">Emelt</span> — 20-49 pontszám<br>• <span style=\"color: #888\">Alacsony</span> — 20 alatti pontszám<br><br>Kattintson egy központra a helyszínre ugráshoz.",
+      "noActive": "Nincsenek aktív tech központok",
+      "infoTooltip": "<strong>Tech központ aktivitás</strong><br>A legtöbb hírakcióval rendelkező tech központokat mutatja.<br><br><em>Aktivitási szintek:</em><br>• <span style=\"color: {{highColor}}\">Magas</span> — Friss hír vagy 50+ pontszám<br>• <span style=\"color: {{elevatedColor}}\">Emelt</span> — 20-49 pontszám<br>• <span style=\"color: {{lowColor}}\">Alacsony</span> — 20 alatti pontszám<br><br>Kattintson egy központra a helyszínre ugráshoz."
+    },
+    "predictions": {
+      "tooltip": "<strong>Előrejelzési piacok</strong><br>Valódi pénzes előrejelzési piacok:<br><ul><li>Az árak tömeg-valószínűségi becsléseket tükröznek</li><li>Magasabb forgalom = megbízhatóbb jelzés</li><li>Geopolitikai és aktuális események fókusz</li></ul>Források: Polymarket, Kalshi",
+      "error": "Nem sikerült az előrejelzések betöltése",
+      "yes": "Igen",
+      "no": "Nem",
+      "vol": "Forg.",
+      "closes": "Lejár",
+      "leanYes": "Inkább igen",
+      "leanNo": "Inkább nem",
+      "tossUp": "Bizonytalan"
+    },
+    "stablecoins": {
+      "pegHealth": "Peg állapot",
+      "supplyVolume": "Kínálat & forgalom",
+      "unavailable": "Stablecoin adatok átmenetileg nem elérhetők",
+      "token": "Token",
+      "mcap": "Piac.tőke",
+      "vol24h": "24ó forg.",
+      "chg24h": "24ó vált."
+    },
+    "status": {
+      "dataFeeds": "Adatfolyamok",
+      "apiStatus": "API állapot",
+      "storage": "Tárhely",
+      "systemStatus": "Rendszer állapot",
+      "updatedJustNow": "Épp most frissítve",
+      "updatedAt": "Frissítve: {{time}}",
+      "storageUnavailable": "Tárhely információ nem elérhető"
+    },
+    "playback": {
+      "toggleMode": "Visszajátszási mód váltása",
+      "live": "ÉLŐ",
+      "historicalPlayback": "Visszajátszás",
+      "close": "Bezárás",
+      "skipToStart": "Ugrás az elejére",
+      "previous": "Előző",
+      "next": "Következő",
+      "skipToEnd": "Ugrás a végére"
+    },
+    "pizzint": {
+      "title": "Pentagon Pizza Index",
+      "defcon": "DEFCON {{level}}",
+      "updated": "Frissítve: {{timeAgo}}",
+      "tensionsTitle": "Geopolitikai feszültségek",
+      "source": "Forrás:",
+      "statusClosed": "ZÁRVA",
+      "statusSpike": "KIUGRÁS",
+      "statusHigh": "MAGAS",
+      "statusElevated": "EMELT",
+      "statusNominal": "NORMÁL",
+      "statusQuiet": "CSENDES",
+      "justNow": "épp most",
+      "minutesAgo": "{{m}} perce",
+      "hoursAgo": "{{h}} órája",
+      "defconLabels": {
+        "1": "FELHÚZOTT PISZTOLY - MAXIMÁLIS KÉSZÜLTSÉG",
+        "2": "GYORS ÜTEM - FEGYVERES ERŐK KÉSZENLÉTBEN",
+        "3": "KÖRTÁMADÁS - EMELT HARCKÉSZÜLTSÉG",
+        "4": "KETTŐS ELLENŐRZÉS - FOKOZOTT HÍRSZERZÉSI FIGYELÉS",
+        "5": "ELHALVÁNYULÁS - LEGALACSONYABB KÉSZÜLTSÉG"
+      }
+    },
+    "strategicPosture": {
+      "elapsed": "Eltelt: {{elapsed}} mp",
+      "clickToView": "Kattintson a(z) {{name}} megtekintéséhez a térképen",
+      "clickToViewMap": "Kattintson a térképen való megtekintéshez",
+      "refresh": "Frissítés",
+      "units": {
+        "fighters": "Vadászgépek",
+        "tankers": "Tankerek",
+        "awacs": "AWACS",
+        "recon": "Felderítők",
+        "transport": "Szállítók",
+        "bombers": "Bombázók",
+        "drones": "Drónok",
+        "aircraft": "Repülőgépek",
+        "carriers": "Repülőgép-hordozók",
+        "destroyers": "Rombolók",
+        "frigates": "Fregattak",
+        "submarines": "Tengeralattjárók",
+        "patrol": "Járőr",
+        "auxiliary": "Segédhajók",
+        "navalVessels": "Haditengerészeti hajók"
+      },
+      "infoTooltip": "<strong>Módszertan</strong><p>Katonai repülőgépek és haditengerészeti hajók összesítése hadszíntér szerint.</p><ul><li><strong>Normál:</strong> Alapszintű tevékenység</li><li><strong>Emelt:</strong> Küszöb felett (50+ repülőgép)</li><li><strong>Kritikus:</strong> Magas koncentráció (100+ repülőgép)</li></ul><p><strong>Csapásmérő képesség:</strong> Tankerek + AWACS + vadászgépek elegendő számban fenntartott műveletekhez.</p>",
+      "scanningTheaters": "Hadszínterek pásztázása",
+      "positions": "Repülőgép pozíciók",
+      "navalVesselsLoading": "Haditengerészeti hajók",
+      "theaterAnalysis": "Hadszíntér elemzés",
+      "connectingStreams": "Csatlakozás élő ADS-B & AIS adatfolyamokhoz...",
+      "initialLoadNote": "Az első betöltés 30-60 másodpercet vesz igénybe, amíg a követési adatok felgyűlnek",
+      "acquiringData": "Adatgyűjtés",
+      "acquiringDesc": "Csatlakozás az ADS-B hálózathoz katonai repülési adatokért. Ez az első betöltésnél 30-60 másodpercig tarthat.",
+      "openSkyAdsb": "OpenSky ADS-B",
+      "aisVesselStream": "AIS hajóadatfolyam",
+      "retryNow": "Újrapróbálás most",
+      "feedRateLimited": "Adatfolyam korlátozva",
+      "rateLimitedDesc": "Az OpenSky API kéréskorlátokkal rendelkezik. A panel automatikusan újrapróbálja néhány perc múlva, vagy próbálhatja újra most.",
+      "rateLimitedTip": "Tipp: Csúcsidőben (UTC 12:00-20:00) gyakran magasabbak a korlátok.",
+      "tryAgain": "Próbálja újra",
+      "badges": {
+        "critical": "KRIT",
+        "elevated": "EMELT",
+        "normal": "NORM"
+      },
+      "trendStable": "stabil",
+      "domains": {
+        "air": "LÉGI",
+        "sea": "TENGERI"
+      },
+      "strike": "CSAPÁS",
+      "staleWarning": "Gyorsítótárazott adatok használata - az élő adatfolyam átmenetileg nem elérhető",
+      "updated": "Frissítve:",
+      "emojiKeyLabel": "Emoji jelmagyarázat",
+      "emojiKeyAir": "Légi eszközök",
+      "emojiKeyNaval": "Haditengerészeti eszközök",
+      "theaters": {
+        "iran-theater": "Iráni hadszíntér",
+        "taiwan-theater": "Tajvani-szoros",
+        "baltic-theater": "Balti hadszíntér",
+        "blacksea-theater": "Fekete-tenger",
+        "korea-theater": "Koreai-félsziget",
+        "south-china-sea": "Dél-kínai-tenger",
+        "east-med-theater": "Keleti Földközi-tenger",
+        "israel-gaza-theater": "Izrael/Gáza",
+        "yemen-redsea-theater": "Jemen/Vörös-tenger"
+      }
+    },
+    "countryBrief": {
+      "shareLink": "Hivatkozás megosztása",
+      "shareStory": "Történet megosztása",
+      "printPdf": "Nyomtatás / PDF",
+      "exportData": "Adatok exportálása",
+      "sourceRef": "Forrás [{{n}}]"
+    },
+    "relatedAssets": {
+      "pipeline": "Csővezeték",
+      "cable": "Kábel",
+      "datacenter": "Adatközpont",
+      "base": "Bázis",
+      "nuclear": "Nukleáris"
+    },
+    "community": {
+      "joinDiscussion": "Csatlakozás a Discord-hoz",
+      "openDiscussion": "Csatlakozás a Discord-hoz",
+      "dontShowAgain": "Ne jelenjen meg újra",
+      "sectionLabel": "Közösség"
+    },
+    "threatLabels": {
+      "critical": "KRIT",
+      "high": "MAGAS",
+      "medium": "KÖZ",
+      "low": "ALAC",
+      "info": "INFO"
+    },
+    "deckgl": {
+      "zoomIn": "Nagyítás",
+      "zoomOut": "Kicsinyítés",
+      "resetView": "Nézet visszaállítása",
+      "legend": {
+        "title": "JELMAGYARÁZAT",
+        "startupHub": "Startup központ",
+        "techHQ": "Tech központ",
+        "accelerator": "Gyorsító",
+        "cloudRegion": "Felhőrégió",
+        "datacenter": "Adatközpont",
+        "stockExchange": "Tőzsde",
+        "financialCenter": "Pénzügyi központ",
+        "centralBank": "Központi bank",
+        "commodityHub": "Nyersanyag központ",
+        "waterway": "Víziút",
+        "highAlert": "Magas riasztás",
+        "elevated": "Emelt",
+        "monitoring": "Megfigyelés alatt",
+        "base": "Bázis",
+        "nuclear": "Nukleáris",
+        "aircraft": "Repülőgép",
+        "ciiLow": "Alacsony (0–30)",
+        "ciiNormal": "Normál (31–50)",
+        "ciiElevated": "Emelt (51–65)",
+        "ciiHigh": "Magas (66–80)",
+        "ciiCritical": "Kritikus (81–100)"
+      },
+      "layerGuide": "Réteg útmutató",
+      "layerWarningTitle": "Teljesítmény figyelmeztetés",
+      "layerWarningBody": "{{threshold}}-nál több réteg engedélyezése befolyásolhatja a renderelési teljesítményt és a képkocka sebességet.",
+      "layerWarningDismiss": "Ne jelenjen meg újra",
+      "layerWarningOk": "Értem",
+      "layersTitle": "Rétegek",
+      "layerSearch": "Rétegek keresése...",
+      "timeAll": "Összes",
+      "views": {
+        "global": "Globális",
+        "americas": "Amerika",
+        "mena": "MENA",
+        "europe": "Európa",
+        "asia": "Ázsia",
+        "latam": "Latin-Amerika",
+        "africa": "Afrika",
+        "oceania": "Óceánia"
+      },
+      "layers": {
+        "startupHubs": "Startup központok",
+        "techHQs": "Tech központok",
+        "accelerators": "Gyorsítók",
+        "cloudRegions": "Felhőrégiók",
+        "aiDataCenters": "MI adatközpontok",
+        "underseaCables": "Tenger alatti kábelek",
+        "internetOutages": "Internetes kimaradások",
+        "cyberThreats": "Kiberfenyegetések",
+        "techEvents": "Tech események",
+        "naturalEvents": "Természeti események",
+        "fires": "Tüzek",
+        "intelHotspots": "Hírszerzési gócpontok",
+        "conflictZones": "Konfliktuszónák",
+        "militaryBases": "Katonai bázisok",
+        "nuclearSites": "Nukleáris létesítmények",
+        "gammaIrradiators": "Gamma besugárzók",
+        "radiationSpike": "Sugárzási kiugrás",
+        "radiationElevated": "Emelt sugárzás",
+        "spaceports": "Űrkikötők",
+        "satellites": "Orbitális megfigyelés",
+        "pipelines": "Csővezetékek",
+        "militaryActivity": "Katonai tevékenység",
+        "shipTraffic": "Hajóforgalom",
+        "flightDelays": "Légiközlekedés",
+        "protests": "Tüntetések",
+        "ucdpEvents": "Fegyveres konfliktus események",
+        "displacementFlows": "Menekültáramlások",
+        "climateAnomalies": "Klímaanomáliák",
+        "weatherAlerts": "Időjárási figyelmeztetések",
+        "strategicWaterways": "Stratégiai víziutak",
+        "economicCenters": "Gazdasági központok",
+        "criticalMinerals": "Kritikus ásványok",
+        "stockExchanges": "Tőzsdék",
+        "financialCenters": "Pénzügyi központok",
+        "centralBanks": "Központi bankok",
+        "commodityHubs": "Nyersanyag központok",
+        "gulfInvestments": "GCC befektetések",
+        "tradeRoutes": "Kereskedelmi útvonalak",
+        "iranAttacks": "Iráni támadások",
+        "gpsJamming": "GPS ZAVARÁS",
+        "ciiChoropleth": "CII instabilitás",
+        "dayNight": "Nappal/éjszaka",
+        "positiveEvents": "Pozitív események",
+        "kindness": "Jócselekedetek",
+        "happiness": "Világboldogság",
+        "speciesRecovery": "Fajok helyreállítása",
+        "renewableInstallations": "Tiszta energia"
+      },
+      "tooltip": {
+        "earthquake": "Földrengés",
+        "militaryAircraft": "Katonai repülőgép",
+        "vesselCluster": "Hajócsoport",
+        "vessels": "hajók",
+        "flightCluster": "Járatcsoport",
+        "aircraft": "repülőgép",
+        "protest": "Tüntetés",
+        "protestsCount": "{{count}} tüntetés",
+        "techHQsCount": "{{count}} tech központ",
+        "techEventsCount": "{{count}} tech esemény",
+        "dataCentersCount": "{{count}} adatközpont",
+        "underseaCable": "Tenger alatti kábel",
+        "pipeline": "Csővezeték",
+        "conflictZone": "Konfliktuszóna",
+        "naturalEvent": "Természeti esemény",
+        "financialCenter": "pénzügyi központ",
+        "port": "Kikötő",
+        "disruption": "Zavarás",
+        "advisory": "Figyelmeztetés",
+        "repairShip": "Javítóhajó",
+        "internetOutage": "Internetes kimaradás",
+        "medium": "közepes",
+        "news": "Hír",
+        "undisclosed": "Nem nyilvános",
+        "stake": "részesedés"
+      },
+      "layerHelp": {
+        "title": "Térképréteg útmutató",
+        "labels": {
+          "countries": "Országok",
+          "timeRecent": "1Ó/6Ó/24Ó",
+          "timeExtended": "7N/30N/ÖSSZES",
+          "sanctions": "Szankciók",
+          "shipping": "Hajózás"
+        },
+        "sections": {
+          "techEcosystem": "Tech ökoszisztéma",
+          "infrastructure": "Infrastruktúra",
+          "naturalEconomic": "Természeti & gazdasági",
+          "financeCore": "Pénzügyi alap",
+          "infrastructureRisk": "Infrastruktúra & kockázat",
+          "macroContext": "Makro kontextus",
+          "timeFilter": "Időszűrő (jobb felül)",
+          "geopolitical": "Geopolitikai",
+          "militaryStrategic": "Katonai & stratégiai",
+          "transport": "Közlekedés",
+          "labels": "Feliratok",
+          "overlays": "Fedvények & feliratok"
+        },
+        "descriptions": {
+          "techStartupHubs": "Jelentős startup ökoszisztémák (SF, NYC, London stb.)",
+          "techCloudRegions": "AWS, Azure, GCP adatközpont régiók",
+          "techHQs": "Jelentős tech cégek központjai",
+          "techAccelerators": "Y Combinator, Techstars, 500 Startups helyszínek",
+          "infraCables": "Jelentős tenger alatti optikai kábelek (internet gerinchálózat)",
+          "infraDatacenters": "MI számítási klaszterek >=10 000 GPU",
+          "infraOutages": "Internet leállások és szolgáltatási zavarok",
+          "naturalEventsTech": "Földrengések, viharok, tüzek (adatközpontokat érinthetik)",
+          "weatherAlerts": "Súlyos időjárási figyelmeztetések",
+          "economicCenters": "Tőzsdék & központi bankok",
+          "countriesOverlay": "Országnév fedvények",
+          "financeExchanges": "Jelentős globális tőzsdék piaci szint szerint",
+          "financeCenters": "Globális és regionális pénzügyi központok",
+          "financeCentralBanks": "Monetáris politikai intézmények világszerte",
+          "financeCommodityHubs": "Kulcsfontosságú tőzsdék, kikötők és finomítók",
+          "financeCables": "Jelentős tenger alatti optikai útvonalak a piaci infrastruktúrához kötve",
+          "financePipelines": "Olaj/gáz csővezeték útvonalak, amelyek az energiapiacokat érintik",
+          "financeOutages": "Internetes zavarok, amelyek a piaci működést érinthetik",
+          "financeCyberThreats": "Biztonsági események a pénzügyi infrastruktúra körül",
+          "macroWaterways": "Stratégiai szűk keresztmetszetek a nyersanyagszállításhoz",
+          "weatherAlertsMarket": "Súlyos időjárási események piaci relevanciával",
+          "naturalEventsMacro": "Földrengések, tüzek, árvizek és egyéb természeti katasztrófák",
+          "timeRecent": "Időalapú adatok szűrése a közelmúlt óráira",
+          "timeExtended": "Adatok megjelenítése az elmúlt hétből, hónapból vagy összes időszakból",
+          "geoConflicts": "Aktív háborús övezetek (Ukrajna, Gáza stb.) határokkal",
+          "geoHotspots": "Feszültségi régiók - hírakcivitási szint szerint színkódolva",
+          "geoSanctions": "Amerikai/EU/ENSZ gazdasági szankciók alá eső országok",
+          "geoProtests": "Polgári zavargások, tüntetések (időszűrve)",
+          "militaryBases": "Amerikai/NATO, kínai, orosz katonai létesítmények (150+)",
+          "militaryNuclear": "Erőművek, dúsítóüzemek, fegyverlétesítmények",
+          "militaryIrradiators": "Ipari gamma besugárzó létesítmények",
+          "militaryActivity": "Élő katonai repülőgép és hajó követés",
+          "infraCablesFull": "Jelentős tenger alatti optikai kábelek (20 gerinchálózati útvonal)",
+          "infraPipelinesFull": "Olaj/gáz csővezetékek (Nord Stream, TAPI stb.)",
+          "infraDatacentersFull": "MI számítási klaszterek csak >=10 000 GPU",
+          "transportShipping": "Élő hajókövetés AIS-en keresztül (hajópozíciók)",
+          "transportDelays": "Repülőtéri késések, földi leállítások és NOTAM lezárások",
+          "naturalEventsFull": "Földrengések (USGS) + viharok, tüzek, vulkánok, árvizek (NASA EONET)",
+          "firesFull": "Aktív erdőtüzek és tűzkerületek (NASA FIRMS)",
+          "climateAnomalies": "Hőmérsékleti és csapadék anomáliák",
+          "waterwaysLabels": "Stratégiai szűk keresztmetszet feliratok",
+          "geoUcdpEvents": "Uppsala Konfliktus Adat Program fegyveres konfliktus események",
+          "geoDisplacement": "Menekült és menekültáramlási minták",
+          "militarySpaceports": "Rakétaindító helyszínek és űrlétesítmények",
+          "infraCyberThreats": "Kibertámadások és biztonsági események",
+          "mineralsFull": "Stratégiai ásványi lelőhelyek és bányák",
+          "techCyberThreats": "Kibertámadások és biztonsági események",
+          "techEvents": "Jelentős tech konferenciák és események",
+          "techFires": "Aktív erdőtüzek a tech infrastruktúra közelében",
+          "financeGulfInvestments": "GCC szuverén vagyonalapok befektetései és FDI",
+          "tradeRoutes": "Jelentős globális hajózási útvonalak, amelyek a kikötőket stratégiai szűk keresztmetszeteken keresztül kötik össze",
+          "dayNight": "Valós idejű napterminátor a nappal és éjszaka zónák megjelenítéséhez",
+          "geoBoundaries": "Demilitarizált zónák, tűzszüneti vonalak és vitatott határok",
+          "ciiChoropleth": "Ország instabilitási index hőtérkép — országok színezése CII pontszám alapján (zöld=stabil, piros=kritikus)"
+        },
+        "notes": {
+          "timeAffects": "Érinti: Földrengések, időjárás, tüntetések, kimaradások"
+        }
+      }
+    },
+    "cii": {
+      "shareStory": "Történet megosztása",
+      "noSignals": "Nem észlelhetők instabilitási jelzések",
+      "infoTooltip": "<strong>Módszertan</strong><ul><li><strong>Z</strong>avargás: polgári rendzavarás & tüntetések</li><li><strong>K</strong>onfliktus: fegyveres konfliktus intenzitás</li><li><strong>B</strong>iztonság: katonai repülések/hajók a területen</li><li><strong>I</strong>nformáció: hírsebesség és fókuszpont korreláció</li><li>Gócpont közelségi erősítés (stratégiai helyszínek)</li></ul><em>Z:K:B:I értékek a komponens pontszámokat mutatják.</em> A fókuszpont észlelés korrelálja a hír entitásokat a térkép jelzéseivel a pontos pontozáshoz."
+    },
+    "insights": {
+      "noStories": "Még nincsenek friss vagy több forrásból származó történetek",
+      "step": "{{step}}/{{total}} lépés",
+      "waitingForData": "Várakozás híradatokra...",
+      "rankingStories": "Fontos történetek rangsorolása...",
+      "analyzingSentiment": "Hangulatelemzés...",
+      "generatingBrief": "Világ összefoglaló generálása...",
+      "infoTooltip": "<strong>MI-alapú elemzés</strong><br>• <strong>Világ összefoglaló</strong>: MI összefoglaló (Groq/OpenRouter)<br>• <strong>Hangulat</strong>: Hír hangulatelemzés<br>• <strong>Sebesség</strong>: Gyorsan terjedő történetek<br>• <strong>Fókuszpontok</strong>: Hír entitások korrelálása térkép jelzésekkel (katonai, tüntetések, kimaradások)<br><em>Csak asztali • Llama 3.3 + fókuszpont észlelés</em>",
+      "settingsTitle": "Beállítások",
+      "sectionMap": "Térkép",
+      "sectionAi": "MI elemzés",
+      "sectionStreaming": "Közvetítés",
+      "streamQualityLabel": "Videóminőség",
+      "streamQualityDesc": "Minőség beállítása minden élő közvetítéshez (alacsonyabb sávszélességet takarít meg)",
+      "globeRenderQualityLabel": "Földgömb renderelési minőség",
+      "globeRenderQualityDesc": "A földgömb vászon felbontását vezérli. Magasabb értékek élesebbek 4K kijelzőkön, de terhelheti a GPU-t.",
+      "globeRenderScaleOptions": {
+        "1": "Takarékos (1x)",
+        "2": "4K (2x)",
+        "3": "Extrém (3x)",
+        "auto": "Automatikus (eszköz)",
+        "1_5": "Éles (1.5x)"
+      },
+      "mapFlashLabel": "Élő esemény pulzálás",
+      "mapFlashDesc": "Helyszínek villanása a térképen friss hír érkezésekor",
+      "aiFlowTitle": "Beállítások",
+      "aiFlowCloudLabel": "Felhő MI (Groq & OpenRouter)",
+      "aiFlowCloudDesc": "Címsorok küldése felhőbe MI összegzéshez (ajánlott)",
+      "aiFlowBrowserLabel": "Böngésző helyi modell",
+      "aiFlowBrowserDesc": "MI futtatása helyben a böngészőben",
+      "aiFlowBrowserWarn": "~250 MB modell adat letöltése a böngészőbe",
+      "aiFlowOllamaCta": "Teljesen helyi MI-t szeretne?",
+      "aiFlowOllamaCtaDesc": "Töltse le az asztali alkalmazást az Ollama támogatáshoz",
+      "aiFlowDownloadDesktop": "Asztali alkalmazás letöltése →",
+      "aiFlowStatusActive": "Felhő MI aktív",
+      "aiFlowStatusCloudAndBrowser": "Felhő MI + böngésző modell aktív",
+      "aiFlowStatusBrowserOnly": "Csak böngésző modell",
+      "aiFlowStatusDisabled": "Nincs engedélyezett MI szolgáltató",
+      "insightsDisabledTitle": "MI elemzés letiltva",
+      "insightsDisabledHint": "Engedélyezze a szolgáltatókat a térkép fejléc beállítások fogaskerekén keresztül",
+      "sectionPanels": "Panelek",
+      "badgeAnimLabel": "Jelvény animációk",
+      "badgeAnimDesc": "Frissítési jelvények animálása a panel fejléceken",
+      "sectionIntelligence": "Hírszerzés",
+      "headlineMemoryLabel": "Címsor memória",
+      "headlineMemoryDesc": "Megtekintett címsorok megjegyzése az új történetek kiemelésére",
+      "streamAlwaysOnLabel": "Élő közvetítések futtatása",
+      "streamAlwaysOnDesc": "Megakadályozza az élő kamerák és élő hírek automatikus szüneteltetését tétlenség esetén. Ajánlott második monitor / fali kijelző használathoz. Tiltsa le (Takarékos) a CPU/sávszélesség megtakarításához."
+    },
+    "settings": {
+      "dataManagementLabel": "Adatkezelés",
+      "exportSettings": "Beállítások exportálása",
+      "importSettings": "Beállítások importálása",
+      "exportSuccess": "Beállítások sikeresen exportálva",
+      "exportFailed": "Beállítások exportálása sikertelen",
+      "importSuccess": "{{count}} beállítás importálva",
+      "importFailed": "Beállítások importálása sikertelen",
+      "reloadNow": "Újratöltés most"
+    },
+    "cascade": {
+      "noImpacts": "Nem észlelhetők országhatások",
+      "filters": {
+        "cables": "Kábelek",
+        "pipelines": "Csővezetékek",
+        "ports": "Kikötők",
+        "chokepoints": "Szűk keresztmetszetek"
+      },
+      "filterType": {
+        "cable": "kábel",
+        "pipeline": "csővezeték",
+        "port": "kikötő",
+        "chokepoint": "szűk keresztmetszet",
+        "country": "ország"
+      },
+      "selectPrompt": "Válasszon {{type}}...",
+      "analyzeImpact": "Hatáselemzés",
+      "impactLevels": {
+        "critical": "kritikus",
+        "high": "magas",
+        "medium": "közepes",
+        "low": "alacsony"
+      },
+      "capacityPercent": "{{percent}}% kapacitás",
+      "noCountryImpacts": "Nem észlelhetők országhatások",
+      "alternativeRoutes": "Alternatív útvonalak",
+      "countriesAffected": "Érintett országok ({{count}})",
+      "links": "kapcsolatok",
+      "selectInfrastructureHint": "Válasszon infrastruktúrát a kaszkádhatás elemzéséhez",
+      "infoTooltip": "<strong>Kaszkádelemzés</strong> Infrastruktúra-függőségek modellezése:<ul><li>Tenger alatti kábelek, csővezetékek, kikötők, szűk keresztmetszetek</li><li>Válasszon infrastruktúrát a meghibásodás szimulálásához</li><li>Érintett országok és kapacitásveszteség megjelenítése</li><li>Redundáns útvonalak azonosítása</li></ul>Adatok a TeleGeography-tól és ipari forrásoktól."
+    },
+    "strategicRisk": {
+      "noRisks": "Nem észlelhetők jelentős kockázatok",
+      "levels": {
+        "critical": "Kritikus",
+        "elevated": "Emelt",
+        "moderate": "Mérsékelt",
+        "low": "Alacsony"
+      },
+      "trend": "Trend",
+      "trends": {
+        "escalating": "Eszkaláció",
+        "deEscalating": "Deeszkaláció",
+        "stable": "Stabil"
+      },
+      "insufficientData": "Elégtelen adat",
+      "unableToAssess": "Nem lehet felmérni a kockázati szintet.",
+      "enableDataSources": "Engedélyezze az adatforrásokat a figyelés megkezdéséhez.",
+      "requiredDataSources": "Szükséges adatforrások",
+      "optionalSources": "Opcionális források",
+      "enableCoreFeeds": "Alapvető adatfolyamok engedélyezése",
+      "waitingForData": "Várakozás adatokra...",
+      "refresh": "Frissítés",
+      "learningMode": "Tanulási mód - {{minutes}} perc a megbízható eredményig",
+      "noData": "nincs adat",
+      "enable": "Engedélyezés",
+      "convergenceMetric": "Konvergencia",
+      "ciiDeviation": "CII eltérés",
+      "infraEvents": "Infra események",
+      "highAlerts": "Magas riasztások",
+      "topRisks": "Legfőbb kockázatok",
+      "recentAlerts": "Friss riasztások ({{count}})",
+      "updated": "Frissítve: {{time}}",
+      "time": {
+        "justNow": "épp most",
+        "minutesAgo": "{{count}} perce",
+        "hoursAgo": "{{count}} órája"
+      },
+      "infoTooltip": "<strong>Módszertan</strong> Összetett pontszám (0-100) keveréke:<ul><li>50% Ország instabilitás (top 5 súlyozva)</li><li>30% Földrajzi konvergencia zónák</li><li>20% Infrastruktúra incidensek</li></ul>Automatikus frissítés 5 percenként."
+    },
+    "techEvents": {
+      "loading": "Tech események betöltése...",
+      "noEvents": "Nincsenek megjeleníthető események",
+      "showOnMap": "Megjelenítés a térképen",
+      "moreInfo": "Több információ",
+      "retry": "Újrapróbálás",
+      "upcoming": "Közelgő",
+      "conferences": "Konferenciák",
+      "earnings": "Eredmények",
+      "all": "Összes",
+      "conferencesCount": "{{count}} konferencia",
+      "onMap": "{{count}} a térképen",
+      "techmemeEvents": "Techmeme események ↗",
+      "today": "MA",
+      "soon": "HAMAROSAN"
+    },
+    "techReadiness": {
+      "internetUsers": "Internetezők",
+      "mobileSubscriptions": "Mobilelőfizetések",
+      "rdSpending": "K+F kiadások",
+      "fetchingData": "Világbank adatok lekérése",
+      "internetUsersIndicator": "Internetezők",
+      "mobileSubscriptionsIndicator": "Mobilelőfizetések",
+      "broadbandAccess": "Szélessáv hozzáférés",
+      "rdExpenditure": "K+F kiadások",
+      "analyzingCountries": "200+ ország elemzése...",
+      "source": "Forrás: Világbank",
+      "updated": "Frissítve: {{date}}",
+      "infoTooltip": "<strong>Globális technológiai felkészültség</strong><br>Összetett pontszám (0-100) Világbank adatok alapján:<br><br><strong>Megjelenített mutatók:</strong><br>🌐 Internetezők (lakosság %-a)<br>📱 Mobilelőfizetések (100 főre vetítve)<br>🔬 K+F kiadások (GDP %-a)<br><br><strong>Súlyok:</strong> K+F (35%), internet (30%), szélessáv (20%), mobil (15%)<br><br><em>— = Nincs friss adat</em><br><em>Forrás: Világbank Nyílt Adatok (2019-2024)</em>"
+    },
+    "populationExposure": {
+      "noData": "Nem állnak rendelkezésre kitettségi adatok",
+      "totalAffected": "Összes érintett",
+      "affectedCount": "{{count}} érintett",
+      "radiusKm": "{{km}} km sugár",
+      "infoTooltip": "<strong>Lakossági kitettségi becslések</strong> Becsült lakosságszám az esemény hatósugarán belül. WorldPop országos sűrűségi adatok alapján.<ul><li>Konfliktus: 50 km sugár</li><li>Földrengés: 100 km sugár</li><li>Árvíz: 100 km sugár</li><li>Erdőtűz: 30 km sugár</li></ul>"
+    },
+    "securityAdvisories": {
+      "loading": "Utazási figyelmeztetések lekérése...",
+      "noMatching": "Nincs a szűrőnek megfelelő figyelmeztetés",
+      "critical": "Kritikus",
+      "health": "Egészségügyi",
+      "sources": "US State Dept, AU DFAT, UK FCDO, NZ MFAT, CDC, ECDC, WHO, US Embassies",
+      "refresh": "Frissítés",
+      "levels": {
+        "doNotTravel": "Ne utazzon",
+        "reconsider": "Fontolja meg az utazást",
+        "caution": "Járjon el óvatosan",
+        "normal": "Normál",
+        "info": "Tájékoztató"
+      },
+      "time": {
+        "justNow": "épp most",
+        "minutesAgo": "{{count}} perce",
+        "hoursAgo": "{{count}} órája",
+        "daysAgo": "{{count}} napja"
+      },
+      "infoTooltip": "<strong>Biztonsági figyelmeztetések</strong><br>Utazási figyelmeztetések és biztonsági riasztások kormányzati külügyi ügynökségektől:<br><br><strong>Források:</strong><br>🇺🇸 US State Dept utazási figyelmeztetések<br>🇦🇺 AU DFAT Smartraveller<br>🇬🇧 UK FCDO utazási tanácsok<br>🇳🇿 NZ MFAT SafeTravel<br><br><strong>Szintek:</strong><br>🟥 Ne utazzon<br>🟧 Fontolja meg az utazást<br>🟨 Járjon el óvatosan<br>🟩 Normál óvintézkedések"
+    },
+    "orefSirens": {
+      "checking": "Szirénariasztások ellenőrzése...",
+      "noAlerts": "Nincsenek aktív szirénák — minden rendben",
+      "notConfigured": "Szirénaszolgáltatás nincs konfigurálva",
+      "activeSirens": "{{count}} aktív sziréna(k)",
+      "area": "Terület",
+      "time": "Idő",
+      "justNow": "épp most",
+      "historyCount": "{{count}} riasztás az elmúlt 24 órában",
+      "historySummary": "{{count}} riasztás 24 óra alatt — {{waves}} hullám",
+      "loadingHistory": "Előzmények betöltése...",
+      "infoTooltip": "<strong>Izraeli szirénák</strong><br>Valós idejű rakéta és rakétariasztások az izraeli polgári védelmi parancsnokságtól.<br><br>Az adatok 10 másodpercenként frissülnek. Pulzáló piros jelzés aktív szirénákat jelez."
+    },
+    "satelliteFires": {
+      "noData": "Nem állnak rendelkezésre tűzadatok",
+      "region": "Régió",
+      "fires": "Tüzek",
+      "high": "Magas",
+      "total": "Összesen",
+      "never": "soha",
+      "time": {
+        "justNow": "épp most",
+        "minutesAgo": "{{count}} perce",
+        "hoursAgo": "{{count}} órája"
+      },
+      "infoTooltip": "NASA FIRMS VIIRS műholdas hőészlelések a megfigyelt konfliktusrégiókban. Magas intenzitás = fényesség >360K & megbízhatóság >80%."
+    },
+    "ucdpEvents": {
+      "stateBased": "Állami alapú",
+      "nonState": "Nem állami",
+      "oneSided": "Egyoldalú",
+      "country": "Ország",
+      "deaths": "Halálesetek",
+      "date": "Dátum",
+      "actors": "Szereplők",
+      "deathsCount": "{{count}} haláleset",
+      "moreNotShown": "{{count}} további esemény nem jelenik meg",
+      "noEvents": "Nincsenek események ebben a kategóriában",
+      "infoTooltip": "<strong>Fegyveres konfliktus események</strong> Eseményszintű konfliktusadatok az Uppsalai Egyetemtől (UCDP).<ul><li><strong>Állami alapú</strong>: Kormány vs lázadó csoport</li><li><strong>Nem állami</strong>: Fegyveres csoport vs fegyveres csoport</li><li><strong>Egyoldalú</strong>: Civilek elleni erőszak</li></ul>A halálesetek legjobb becslésként jelennek meg (alacsony-magas tartomány). Az ACLED duplikátumok automatikusan kiszűrésre kerülnek."
+    },
+    "giving": {
+      "activityIndex": "Aktivitási index",
+      "trend": "Trend",
+      "estDailyFlow": "Becsült napi forgalom",
+      "cryptoDaily": "Kripto napi",
+      "tabs": {
+        "platforms": "Platformok",
+        "categories": "Kategóriák",
+        "crypto": "Kripto",
+        "institutional": "Intézményi"
+      },
+      "platform": "Platform",
+      "dailyVol": "Napi forg.",
+      "velocity": "Sebesség",
+      "freshness": "Adat",
+      "category": "Kategória",
+      "share": "Részesedés",
+      "trending": "TREND",
+      "dailyInflow": "24ó beáramlás",
+      "wallets": "Tárcák",
+      "ofTotal": "Összesből %",
+      "topReceivers": "Fő fogadók",
+      "oecdOda": "OECD ODA",
+      "cafIndex": "CAF index",
+      "candidGrants": "Candid támogatások",
+      "dataLag": "Adat késés",
+      "infoTooltip": "<strong>Globális adakozási aktivitási index</strong> Összetett index, amely a személyes adakozást követi közösségi finanszírozási platformokon és kripto tárcákon keresztül.<ul><li><strong>Platformok</strong>: GoFundMe, GlobalGiving, JustGiving kampány mintavételezés</li><li><strong>Kripto</strong>: On-chain jótékonysági tárca beáramlások (Endaoment, Giving Block)</li><li><strong>Intézményi</strong>: OECD ODA, CAF World Giving Index, Candid támogatások</li></ul>Az index irányadó (nem pontos dollár összegek). Élő mintavételezést és publikált éves jelentéseket kombinál."
+    },
+    "displacement": {
+      "noData": "Nincs adat",
+      "refugees": "Menekültek",
+      "asylumSeekers": "Menedékkérők",
+      "idps": "Belső menekültek",
+      "total": "Összesen",
+      "origins": "Származási országok",
+      "hosts": "Befogadó országok",
+      "badges": {
+        "crisis": "VÁLSÁG",
+        "high": "MAGAS",
+        "elevated": "EMELT"
+      },
+      "country": "Ország",
+      "status": "Állapot",
+      "count": "Szám",
+      "infoTooltip": "<strong>UNHCR menekültadatok</strong> Globális menekült, menedékkérő és belső menekült számok az UNHCR-től.<ul><li><strong>Származási országok</strong>: Országok, ahonnan menekülnek</li><li><strong>Befogadó országok</strong>: Menekülteket befogadó országok</li><li>Válság jelzés: >1M | Magas: >500K menekült</li></ul>Az adatok évente frissülnek. CC BY 4.0 licenc."
+    },
+    "climate": {
+      "noAnomalies": "Nem észlelhetők jelentős anomáliák",
+      "zone": "Zóna",
+      "temp": "Hőm.",
+      "precip": "Csap.",
+      "severityLabel": "Súlyosság",
+      "severity": {
+        "extreme": "EXTRÉM",
+        "moderate": "MÉRSÉKELT",
+        "normal": "NORMÁL"
+      },
+      "infoTooltip": "<strong>Klímaanomália figyelő</strong> Hőmérsékleti és csapadékeltérések a 30 napos alapvonaltól. Adatok az Open-Meteo-tól (ERA5 újraelemzés).<ul><li><strong>Extrém</strong>: >5°C vagy >80mm/nap eltérés</li><li><strong>Mérsékelt</strong>: >3°C vagy >40mm/nap eltérés</li></ul>15 konfliktus/katasztrófa-érzékeny zónát figyel."
+    },
+    "newsPanel": {
+      "close": "Bezárás",
+      "summarize": "Panel összegzése",
+      "generatingSummary": "Összegzés generálása...",
+      "summaryError": "Nem sikerült az összegzés generálása",
+      "summaryFailed": "Összegzés sikertelen",
+      "sources": "{{count}} forrás",
+      "relatedAssetsNear": "Kapcsolódó eszközök {{location}} közelében",
+      "sortBy": "Rendezés",
+      "sortNewest": "Legújabb",
+      "sortRelevance": "Relevancia"
+    },
+    "export": {
+      "exportData": "Adatok exportálása"
+    },
+    "runtimeConfig": {
+      "getApiKey": "API kulcs beszerzése"
+    },
+    "breakingNews": {
+      "critical": "KRITIKUS",
+      "high": "MAGAS",
+      "dismiss": "Elvetés",
+      "enableNotifications": "Asztali értesítések engedélyezése"
+    },
+    "intelligenceFindings": {
+      "breakingAlerts": "Friss riasztások",
+      "popupAlerts": "Új riasztások felugró megjelenítése",
+      "badgeTitle": "Hírszerzési eredmények",
+      "title": "Hírszerzési eredmények",
+      "none": "Nincsenek friss hírszerzési eredmények",
+      "monitoring": "FIGYELÉS",
+      "scanning": "Korrelációk és anomáliák keresése...",
+      "reviewRecommended": "{{count}} hírszerzési eredmény - áttekintés ajánlott",
+      "count": "{{count}} hírszerzési eredmény",
+      "detected": "{{count}} ÉSZLELVE",
+      "critical": "{{count}} KRITIKUS",
+      "highPriority": "{{count}} MAGAS PRIORITÁS",
+      "hideFindings": "Eredmények elrejtése",
+      "more": "+{{count}} további eredmény",
+      "all": "Összes hírszerzési eredmény ({{count}})",
+      "priority": {
+        "critical": "KRITIKUS",
+        "high": "MAGAS",
+        "medium": "KÖZEPES",
+        "low": "ALACSONY"
+      },
+      "insights": {
+        "criticalDestabilization": "Kritikus destabilizáció - azonnali figyelmet igényel",
+        "significantShift": "Jelentős változás - szoros figyelés szükséges",
+        "developingSituation": "Fejlődő helyzet - eszkaláció figyelése szükséges",
+        "convergence": "Több esemény csoportosul a régióban",
+        "cascade": "Infrastruktúra-zavarás terjed",
+        "review": "Áttekintés a helyzetismerethez"
+      },
+      "time": {
+        "justNow": "épp most",
+        "minutesAgo": "{{count}} perce",
+        "hoursAgo": "{{count}} órája",
+        "daysAgo": "{{count}} napja"
+      }
+    },
+    "countryTimeline": {
+      "now": "most",
+      "noEventsIn7Days": "Nincs esemény 7 nap alatt"
+    },
+    "gdeltIntel": {
+      "infoTooltip": "<strong>GDELT hírszerzés</strong> Valós idejű globális hírfigyelés:<ul><li>Kurátált téma kategóriák (konfliktusok, kiber stb.)</li><li>Cikkek 100+ nyelvről fordítva</li><li>15 percenként frissül</li></ul>Forrás: GDELT Project (gdeltproject.org)"
+    },
+    "telegramIntel": {
+      "infoTooltip": "Valós idejű jelzések megfigyelt Telegram OSINT csatornákról",
+      "loading": "Csatlakozás a Telegram relayhez...",
+      "empty": "Nincsenek elérhető üzenetek",
+      "disabled": "Telegram relay nem aktív",
+      "filterAll": "Összes",
+      "filterBreaking": "Friss",
+      "filterConflict": "Konfliktus",
+      "filterAlerts": "Riasztások",
+      "filterOsint": "OSINT",
+      "filterPolitics": "Politika",
+      "filterMiddleeast": "Közel-Kelet",
+      "live": "ÉLŐ",
+      "viewSource": "Forrás megtekintése"
+    },
+    "investments": {
+      "infoTooltip": "Szaúd-Arábia és az Egyesült Arab Emírségek külföldi közvetlen befektetéseinek adatbázisa globális kritikus infrastruktúrában. Kattintson egy sorra a befektetés helyszínre ugrásához a térképen.",
+      "searchPlaceholder": "Eszközök, országok, szervezetek keresése…",
+      "allCountries": "Összes ország",
+      "saudiArabia": "Szaúd-Arábia",
+      "uae": "EAE",
+      "allSectors": "Összes szektor",
+      "allEntities": "Összes szervezet",
+      "allStatuses": "Összes állapot",
+      "operational": "Működő",
+      "underConstruction": "Építés alatt",
+      "announced": "Bejelentett",
+      "rumoured": "Hírbeszéd",
+      "divested": "Eladott",
+      "asset": "Eszköz",
+      "country": "Ország",
+      "sector": "Szektor",
+      "status": "Állapot",
+      "investment": "Befektetés",
+      "year": "Év",
+      "noMatch": "Nincsenek szűrőknek megfelelő befektetések",
+      "undisclosed": "Nem nyilvános",
+      "sectors": {
+        "ports": "Kikötők",
+        "pipelines": "Csővezetékek",
+        "energy": "Energia",
+        "datacenters": "Adatközpontok",
+        "airports": "Repülőterek",
+        "railways": "Vasút",
+        "telecoms": "Telekommunikáció",
+        "water": "Víz",
+        "logistics": "Logisztika",
+        "mining": "Bányászat",
+        "realEstate": "Ingatlan",
+        "manufacturing": "Gyártás"
+      }
+    },
+    "prediction": {
+      "infoTooltip": "<strong>Előrejelzési piacok</strong> Valódi pénzes előrejelzési piacok:<ul><li>Az árak tömeg-valószínűségi becsléseket tükröznek</li><li>Magasabb forgalom = megbízhatóbb jelzés</li><li>Geopolitikai és aktuális események fókusz</li></ul>Források: Polymarket, Kalshi"
+    },
+    "etfFlows": {
+      "unavailable": "ETF adatok átmenetileg nem elérhetők",
+      "rateLimited": "ETF adatok átmenetileg nem elérhetők (korlátozva) — rövidesen újrapróbálás",
+      "netFlow": "Nettó áramlás",
+      "estFlow": "Becsült áramlás",
+      "totalVol": "Össz. forg.",
+      "etfs": "ETF-ek",
+      "netInflow": "NETTÓ BEÁRAMLÁS",
+      "netOutflow": "NETTÓ KIÁRAMLÁS",
+      "table": {
+        "ticker": "Ticker",
+        "issuer": "Kibocsátó",
+        "estFlow": "Becsült áramlás",
+        "volume": "Forgalom",
+        "change": "Változás"
+      },
+      "infoTooltip": "<strong>BTC ETF figyelő</strong> Napi becsült alapáramlásokat követi az amerikai spot Bitcoin ETF-ekhez:<ul><li>Beáramlás/kiáramlás irány és mérték</li><li>Forgalom és árváltozás alaponként</li><li>Nettó összesített áramlás az összes követett ETF-en</li></ul>"
+    },
+    "macroSignals": {
+      "overall": "Összesített",
+      "verdict": {
+        "buy": "VÉTEL",
+        "cash": "KÉSZPÉNZ"
+      },
+      "bullish": "{{count}}/{{total}} bika",
+      "signals": {
+        "liquidity": "Likviditás",
+        "flow": "Áramlás",
+        "regime": "Rezsim",
+        "btcTrend": "BTC trend",
+        "hashRate": "Hash ráta",
+        "momentum": "Lendület",
+        "fearGreed": "Félelem & kapzsiság"
+      },
+      "infoTooltip": "<strong>Piaci rezsim</strong> Összetett jelzőpanel a pozicionáláshoz és kockázati étvágyhoz:<ul><li><strong>Likviditás</strong>: Nettó Fed likviditás proxy</li><li><strong>Áramlás</strong>: BTC vs QQQ 5 napos hozamok</li><li><strong>Rezsim</strong>: QQQ vs XLP rotáció (kockázat-kedvelő/kerülő)</li><li><strong>BTC trend</strong>: Ár vs SMA50/200, Mayer szorzó</li><li><strong>Hash ráta</strong>: 30 napos hálózati hash változás</li><li><strong>Félelem & kapzsiság</strong>: Piaci hangulat index</li></ul>Ez a panel a rezsimre és pozicionálásra szolgál, nem általános makro adatokra."
+    },
+    "forecast": {
+      "infoTooltip": "<strong>MI előrejelzések</strong> MI-generált valószínűségi becslések geopolitikai és gazdasági eseményekre:<ul><li>Tartományközi lefedettség: konfliktus, piacok, ellátási lánc, kiber, politikai</li><li>Minden előrejelzés becsült valószínűséget, megbízhatósági szintet és időhorizontot mutat</li><li>Előrejelzési piaci alapvonalakhoz kalibrálva, ahol elérhető</li></ul>Az előrejelzések frissülnek, ahogy új hírszerzési jelzések érkeznek. Szűrjön tartomány szerint a fenti fülekkel."
+    },
+    "escalationCorrelation": {
+      "infoTooltip": "<strong>Eszkalációs figyelő</strong> Konvergáló geopolitikai jelzések észlelése:<ul><li>Katonai mozgások, konfliktus események és hírcsúcsok korrelálása</li><li>Konvergencia zónák pontozása súlyosság szerint (kritikus/magas/közepes/alacsony)</li><li>Eszkalációs vagy deeszkalációs trendek időbeli követése</li></ul>Kattintson egy kártyára a régióra ugráshoz a térképen."
+    },
+    "economicCorrelation": {
+      "infoTooltip": "<strong>Gazdasági hadviselés</strong> Konvergáló gazdasági nyomásjelzések észlelése:<ul><li>Szankciók, kereskedelmi korlátozások és devizamozgások</li><li>Geopolitikai szereplőkhöz kötött nyersanyag-zavarások</li><li>Tartományközi korreláció gazdasági és biztonsági események között</li></ul>Kattintson egy kártyára az érintett régióra ugráshoz."
+    },
+    "militaryCorrelation": {
+      "infoTooltip": "<strong>Erő elhelyezkedés</strong> Katonai tevékenység korrelálása geopolitikai kontextussal:<ul><li>Katonai repülőgép és haditengerészeti hajó koncentrációk régiónként</li><li>Kereszthivatkozás aktív konfliktuszónákkal és hírcsúcsokkal</li><li>Szokatlan erőfelhalmozások vagy átcsoportosítások kiemelése</li></ul>Kattintson egy kártyára a régióra ugráshoz a térképen."
+    },
+    "disasterCorrelation": {
+      "infoTooltip": "<strong>Katasztrófa kaszkád</strong> Konvergáló természeti katasztrófa és infrastruktúra jelzések észlelése:<ul><li>Földrengések, erdőtüzek, árvizek és szélsőséges időjárás korrelálása</li><li>Kaszkádhatások követése az infrastruktúrára és ellátási láncokra</li><li>Halmozódó katasztrófa kockázatú régiók kiemelése</li></ul>Kattintson egy kártyára az érintett régióra ugráshoz."
+    },
+    "markets": {
+      "infoTooltip": "<strong>Piacok</strong> Valós idejű tőzsdeindexek, részvények és kripto árak. Testreszabhatja a figyelőlistáját a Figyelőlista gombbal. A sparkline-ok a legutóbbi ártrendet mutatják."
+    },
+    "heatmap": {
+      "infoTooltip": "<strong>Szektortérkép</strong> S&P 500 szektorteljesítmény egyetlen pillantással. A szín intenzitása a napi változás mértékét tükrözi. Zöld = nyereség, piros = veszteség."
+    },
+    "commodities": {
+      "infoTooltip": "<strong>Nyersanyagok</strong> Kereskedhető nem-energia nyersanyag szalag fémekre és anyagokra fókuszálva. Az energia árak az Energia komplexumban, a makro stressz mutatók a Makro stresszben találhatók."
+    },
+    "panel": {
+      "showMethodologyInfo": "Módszertani információ megjelenítése",
+      "dragToResize": "Húzza az átméretezéshez (dupla kattintás a visszaállításhoz)",
+      "openSettings": "Beállítások megnyitása",
+      "closePanel": "Panel bezárása",
+      "addPanel": "Panel hozzáadása"
+    },
+    "languageSelector": {
+      "selectLanguage": "Nyelv kiválasztása",
+      "mapLabelsFallbackVi": "A térkép feliratok jelenleg angolra váltanak vissza vietnámi nyelv esetén."
+    },
+    "serviceStatus": {
+      "checkingServices": "Szolgáltatások ellenőrzése...",
+      "allOperational": "Minden szolgáltatás működik",
+      "ok": "OK",
+      "degraded": "Csökkent",
+      "outage": "Kimaradás",
+      "backendUnavailable": "Asztali helyi háttérrendszer nem elérhető. Visszaváltás felhő API-ra.",
+      "desktopReadiness": "Asztali felkészültség",
+      "acceptanceChecks": "Elfogadási ellenőrzések: {{ready}}/{{total}} kész · kulcs-alapú funkciók {{available}}/{{featureTotal}}",
+      "nonParityFallbacks": "Nem paritásos visszaváltások ({{count}})",
+      "categories": {
+        "all": "Összes",
+        "cloud": "Felhő",
+        "dev": "Fejlesztői eszközök",
+        "comm": "Kommunikáció",
+        "ai": "MI",
+        "saas": "SaaS"
+      }
+    },
+    "verification": {
+      "title": "Információ ellenőrzési ellenőrzőlista",
+      "hint": "A Bellingcat OSH keretrendszerén alapul",
+      "verdicts": {
+        "verified": "ELLENŐRZÖTT",
+        "likely": "VALÓSZÍNŰLEG HITELES",
+        "uncertain": "BIZONYTALAN",
+        "unreliable": "MEGBÍZHATATLAN"
+      },
+      "notesTitle": "Ellenőrzési megjegyzések",
+      "noNotes": "Nincsenek megjegyzések",
+      "addNotePlaceholder": "Ellenőrzési megjegyzés hozzáadása...",
+      "add": "Hozzáadás",
+      "resetChecklist": "Ellenőrzőlista visszaállítása",
+      "checks": {
+        "recency": "Friss időbélyeg megerősítve",
+        "geolocation": "Helyszín ellenőrizve",
+        "source": "Elsődleges forrás azonosítva",
+        "crossref": "Más forrásokkal kereszthivatkozva",
+        "noAi": "Nincs MI generálási nyom",
+        "noRecrop": "Nem újrahasznosított/régi felvétel",
+        "metadata": "Metaadatok ellenőrizve",
+        "context": "Kontextus megállapítva"
+      }
+    },
+    "liveNews": {
+      "retry": "Újrapróbálás",
+      "notLive": "A(z) {{name}} jelenleg nem élő",
+      "cannotEmbed": "A(z) {{name}} nem játszható le itt — lehet, hogy régiója korlátozza (hiba {{code}})",
+      "botCheck": "A YouTube bejelentkezést kér a(z) {{name}} lejátszásához",
+      "signInToYouTube": "Bejelentkezés a YouTube-ba",
+      "openOnYouTube": "Megnyitás a YouTube-on",
+      "manage": "Csatornák kezelése",
+      "addChannel": "Csatorna hozzáadása",
+      "remove": "Eltávolítás",
+      "youtubeHandle": "YouTube azonosító (pl. @Csatorna)",
+      "youtubeHandleOrUrl": "YouTube azonosító vagy URL",
+      "displayName": "Megjelenítési név (opcionális)",
+      "openPanelSettings": "Panel megjelenítési beállítások",
+      "channelSettings": "Csatorna beállítások",
+      "save": "Mentés",
+      "cancel": "Mégse",
+      "confirmDelete": "Törli ezt a csatornát?",
+      "confirmTitle": "Megerősítés",
+      "restoreDefaults": "Alapértelmezett csatornák visszaállítása",
+      "availableChannels": "Elérhető csatornák",
+      "noResults": "Nincs \"{{term}}\" kifejezésre illeszkedő csatorna",
+      "customChannel": "Egyéni csatorna",
+      "regionAll": "Összes",
+      "regionNorthAmerica": "Észak-Amerika",
+      "regionEurope": "Európa",
+      "regionLatinAmerica": "Latin-Amerika",
+      "regionAsia": "Ázsia",
+      "regionMiddleEast": "Közel-Kelet",
+      "regionAfrica": "Afrika",
+      "regionOceania": "Óceánia",
+      "invalidHandle": "Adjon meg egy érvényes YouTube azonosítót (pl. @CsatornaNév)",
+      "channelNotFound": "YouTube csatorna nem található",
+      "verifying": "Ellenőrzés…",
+      "hlsUrl": "HLS adatfolyam URL (opcionális)",
+      "invalidHlsUrl": "Adjon meg egy érvényes HLS adatfolyam URL-t (.m3u8)"
+    },
+    "map": {
+      "showMap": "Térkép megjelenítése",
+      "hideMap": "Térkép elrejtése"
+    }
+  },
+  "popups": {
+    "startDate": "KEZDŐ DÁTUM",
+    "endDate": "BEFEJEZŐ DÁTUM",
+    "magnitude": "Magnitúdó",
+    "depth": "Mélység",
+    "intensity": "Intenzitás",
+    "type": "Típus",
+    "status": "Állapot",
+    "severity": "Súlyosság",
+    "location": "HELYSZÍN",
+    "coordinates": "Koordináták",
+    "casualties": "ÁLDOZATOK",
+    "displaced": "MENEKÜLTEK",
+    "belligerents": "HADVISELŐ FELEK",
+    "keyDevelopments": "KULCSFONTOSSÁGÚ FEJLEMÉNYEK",
+    "unknown": "Ismeretlen",
+    "source": "Forrás",
+    "target": "Célpont",
+    "events": "Események",
+    "impact": "Hatás",
+    "capacity": "Kapacitás",
+    "alerts": "Aktív riasztások",
+    "updated": "Frissítve",
+    "common": {
+      "start": "KEZDET",
+      "end": "VÉG",
+      "updated": "FRISSÍTVE"
+    },
+    "conflict": {
+      "title": "KONFLIKTUSZÓNA"
+    },
+    "earthquake": {
+      "levels": {
+        "major": "JELENTŐS",
+        "moderate": "MÉRSÉKELT",
+        "minor": "ENYHE"
+      }
+    },
+    "base": {
+      "types": {
+        "us-nato": "Amerikai/NATO",
+        "china": "KÍNAI",
+        "russia": "OROSZ"
+      }
+    },
+    "protest": {
+      "acledVerified": "ACLED (ellenőrzött)",
+      "gdelt": "GDELT",
+      "riots": "Zavargások",
+      "highSeverity": "Magas súlyosság"
+    },
+    "gpsJamming": {
+      "title": "GPS/GNSS interferencia",
+      "navPerformance": "Navigációs teljesítmény",
+      "samples": "ADS-B minták",
+      "aircraft": "Repülőgép",
+      "h3Hex": "H3 hatszög"
+    },
+    "flight": {
+      "scheduled": "Terv.",
+      "estimated": "Becs.",
+      "groundStop": "FÖLDI LEÁLLÍTÁS",
+      "groundDelay": "FÖLDI KÉSLELTETÉSI PROGRAM",
+      "departureDelay": "INDULÁSI KÉSÉSEK",
+      "arrivalDelay": "ÉRKEZÉSI KÉSÉSEK",
+      "delaysReported": "JELENTETT KÉSÉSEK",
+      "closure": "REPÜLŐTÉR LEZÁRÁS",
+      "delays": "KÉSÉSEK",
+      "avgDelay": "ÁTL. KÉSÉS",
+      "cancelled": "TÖRÖLVE",
+      "sources": {
+        "faa": "FAA ASWS",
+        "eurocontrol": "Eurocontrol",
+        "computed": "Számított",
+        "aviationstack": "Járatadatok",
+        "notam": "NOTAM"
+      },
+      "regions": {
+        "americas": "Amerika",
+        "europe": "Európa",
+        "apac": "Ázsia-Csendes-óceán",
+        "mena": "Közel-Kelet",
+        "africa": "Afrika"
+      }
+    },
+    "aircraft": {
+      "altitude": "Magasság",
+      "speed": "Földi sebesség",
+      "heading": "Irány",
+      "position": "Pozíció",
+      "ground": "Földön",
+      "airborne": "Levegőben"
+    },
+    "apt": {
+      "description": "Fejlett tartós fenyegetés (APT) csoport állami szintű képességekkel. Kifinomult kiberműveleteiről ismert, amelyek kritikus infrastruktúrát, kormányzati és védelmi szektorokat céloznak."
+    },
+    "cyberThreat": {
+      "title": "KIBERFENYEGETÉS"
+    },
+    "nuclear": {
+      "types": {
+        "plant": "ERŐMŰ",
+        "enrichment": "DÚSÍTÓÜZEM",
+        "weapons": "FEGYVERKOMPLEXUM",
+        "research": "KUTATÁS"
+      },
+      "description": "Megfigyelés alatti nukleáris létesítmény. Stratégiai jelentőségű a regionális biztonság és a nonproliferáció szempontjából."
+    },
+    "economic": {
+      "types": {
+        "exchange": "TŐZSDE",
+        "centralBank": "KÖZPONTI BANK",
+        "financialHub": "PÉNZÜGYI KÖZPONT"
+      },
+      "closed": "ZÁRVA"
+    },
+    "irradiator": {
+      "subtitle": "Ipari gamma besugárzó létesítmény",
+      "description": "Ipari besugárzó létesítmény Kobalt-60 vagy Cézium-137 forrásokkal orvosi eszközök sterilizálásához, élelmiszer tartósításhoz vagy anyagfeldolgozáshoz. Forrás: NAÜ DIIF adatbázis."
+    },
+    "pipeline": {
+      "title": "CSŐVEZETÉK",
+      "types": {
+        "oil": "OLAJVEZETÉK",
+        "gas": "GÁZVEZETÉK",
+        "products": "TERMÉKVEZETÉK"
+      },
+      "status": {
+        "operating": "ÜZEMEL",
+        "construction": "ÉPÍTÉS ALATT"
+      },
+      "description": "Jelentős {{type}} csővezeték infrastruktúra. {{status}}"
+    },
+    "pipelineStatusDesc": {
+      "operating": "Jelenleg működik és erőforrásokat szállít.",
+      "construction": "Jelenleg építés alatt."
+    },
+    "cable": {
+      "fault": "HIBA",
+      "degraded": "CSÖKKENT",
+      "active": "AKTÍV",
+      "major": "JELENTŐS",
+      "cable": "KÁBEL",
+      "subtitle": "Tenger alatti optikai kábel",
+      "type": "TENGER ALATTI KÁBEL",
+      "advisory": "HIBA FIGYELMEZTETÉS",
+      "repairDeployment": "JAVÍTÁS TELEPÍTÉS",
+      "repairStatus": {
+        "onStation": "Helyszínen",
+        "enRoute": "Úton"
+      },
+      "health": {
+        "evidence": "ÁLLAPOT BIZONYÍTÉK"
+      },
+      "description": "Tenger alatti távközlési kábel, amely nemzetközi internetes forgalmat szállít. Ezek az optikai kábelek alkotják a globális internet összeköttetés gerincét, az interkontinentális adatok több mint 95%-át továbbítva."
+    },
+    "repairShip": {
+      "note": "Javítóhajó követése aktív telepítést jelez a hibahely felé.",
+      "badge": "JAVÍTÓHAJÓ",
+      "description": "Javítóhajó követése aktív telepítést jelez tenger alatti kábel helyreállítás támogatásában.",
+      "status": {
+        "onStation": "HELYSZÍNEN",
+        "enRoute": "ÚTON"
+      }
+    },
+    "strategic": "STRATÉGIAI",
+    "verified": "ELLENŐRZÖTT",
+    "sampledList": "{{count}} esemény mintavételezett listája.",
+    "reason": "OK",
+    "threat": "FENYEGETÉS",
+    "aka": "Más néven",
+    "sponsor": "SZPONZOR",
+    "origin": "EREDET",
+    "country": "ORSZÁG",
+    "malware": "KÁRTEVŐ",
+    "lastSeen": "UTOLJÁRA LÁTOTT",
+    "open": "NYITVA",
+    "tradingHours": "KERESKEDÉSI IDŐK",
+    "gamma": "GAMMA",
+    "city": "VÁROS",
+    "length": "HOSSZ",
+    "operator": "ÜZEMELTETŐ",
+    "countries": "ORSZÁGOK",
+    "waypoints": "ÚTVONALPONTOK",
+    "repairEta": "JAVÍTÁS BECSÜLT IDEJE",
+    "timeUnits": {
+      "m": "p",
+      "h": "ó",
+      "d": "n"
+    },
+    "hotspot": {
+      "escalation": "ESZKALÁCIÓS ÉRTÉKELÉS",
+      "baseline": "Alapvonal",
+      "score": "Pontszám",
+      "trend": "Trend",
+      "components": {
+        "news": "Hírek",
+        "cii": "CII",
+        "geo": "Földr.",
+        "military": "Katonai"
+      },
+      "levels": {
+        "stable": "STABIL",
+        "watch": "FIGYELÉS",
+        "elevated": "EMELT",
+        "high": "MAGAS",
+        "critical": "KRITIKUS"
+      }
+    },
+    "buttons": {
+      "track": "Probléma követése",
+      "details": "Részletek megtekintése"
+    },
+    "historicalContext": "TÖRTÉNELMI KONTEXTUS",
+    "lastMajorEvent": "Utolsó jelentős esemény",
+    "precedents": "Előzmények",
+    "cyclicalPattern": "Ciklikus minta",
+    "whyItMatters": "MIÉRT FONTOS",
+    "keyEntities": "FŐ SZEREPLŐK",
+    "relatedHeadlines": "KAPCSOLÓDÓ CÍMSOROK",
+    "liveIntel": "Élő hírszerzés",
+    "loadingNews": "Globális hírek betöltése...",
+    "noCoverage": "Nincs friss globális tudósítás",
+    "time": "Idő",
+    "area": "Terület",
+    "expires": "Lejár",
+    "aisGapSpike": "AIS KIESÉS KIUGRÁS",
+    "chokepointCongestion": "SZŰK KERESZTMETSZET TORLÓDÁS",
+    "darkening": "ELSÖTÉTÜLÉS",
+    "density": "SŰRŰSÉG",
+    "darkShips": "SÖTÉT HAJÓK",
+    "vesselCount": "HAJÓSZÁM",
+    "window": "ABLAK",
+    "region": "RÉGIÓ",
+    "fatalities": "HALÁLOS ÁLDOZATOK",
+    "actors": "SZEREPLŐK",
+    "near": "Közel",
+    "moreEvents": "további események",
+    "monitoring": "Megfigyelés",
+    "viewUSGS": "Megtekintés a USGS-en",
+    "expired": "Lejárt",
+    "timeAgo": {
+      "s": "{{count}} mp-e",
+      "m": "{{count}} perce",
+      "h": "{{count}} órája",
+      "d": "{{count}} napja"
+    },
+    "cableAdvisory": {
+      "reported": "JELENTVE",
+      "impact": "HATÁS",
+      "eta": "BECSÜLT IDŐ"
+    },
+    "outage": {
+      "levels": {
+        "total": "TELJES LEÁLLÁS",
+        "major": "JELENTŐS KIMARADÁS",
+        "partial": "RÉSZLEGES ZAVARÁS",
+        "disruption": "ZAVARÁS"
+      },
+      "reported": "JELENTVE",
+      "categories": "KATEGÓRIÁK",
+      "readReport": "Teljes jelentés olvasása"
+    },
+    "datacenter": {
+      "status": {
+        "existing": "MŰKÖDŐ",
+        "planned": "TERVEZETT",
+        "decommissioned": "LESZERELT",
+        "unknown": "ISMERETLEN"
+      },
+      "gpuChipCount": "GPU/CHIP SZÁM",
+      "chipType": "CHIP TÍPUS",
+      "power": "TELJESÍTMÉNY",
+      "sector": "SZEKTOR",
+      "attribution": "Adatok: Epoch AI GPU klaszterek",
+      "chips": "chipek",
+      "cluster": {
+        "title": "{{count}} adatközpont",
+        "totalChips": "ÖSSZES CHIP",
+        "totalPower": "ÖSSZES TELJESÍTMÉNY",
+        "operational": "MŰKÖDŐ",
+        "planned": "TERVEZETT",
+        "moreDataCenters": "+ {{count}} további adatközpont",
+        "sampledSites": "{{count}} helyszín mintavételezett listája."
+      }
+    },
+    "startupHub": {
+      "tiers": {
+        "mega": "MEGA KÖZPONT",
+        "major": "JELENTŐS KÖZPONT",
+        "emerging": "FELTÖREKVŐ",
+        "hub": "KÖZPONT"
+      },
+      "unicorns": "UNIKORNISOK"
+    },
+    "cloudRegion": {
+      "provider": "SZOLGÁLTATÓ",
+      "availabilityZones": "RENDELKEZÉSRE ÁLLÁSI ZÓNÁK"
+    },
+    "techHQ": {
+      "types": {
+        "faang": "NAGY TECH",
+        "unicorn": "UNIKORNIS",
+        "public": "TŐZSDEI",
+        "tech": "TECH"
+      },
+      "marketCap": "PIACI KAPITALIZÁCIÓ",
+      "employees": "ALKALMAZOTTAK"
+    },
+    "accelerator": {
+      "types": {
+        "accelerator": "GYORSÍTÓ",
+        "incubator": "INKUBÁTOR",
+        "studio": "STARTUP STÚDIÓ"
+      },
+      "founded": "ALAPÍTVA",
+      "notableAlumni": "NEVES ÖREGDIÁKOK"
+    },
+    "techEvent": {
+      "days": {
+        "today": "MA",
+        "tomorrow": "HOLNAP",
+        "inDays": "{{count}} NAP MÚLVA"
+      },
+      "date": "DÁTUM",
+      "moreInformation": "Több információ"
+    },
+    "techHQCluster": {
+      "companiesCount": "{{count}} CÉG",
+      "bigTechCount": "{{count}} nagy tech",
+      "unicornsCount": "{{count}} unikornis",
+      "publicCount": "{{count}} tőzsdei",
+      "sampled": "{{count}} cég mintavételezett listája."
+    },
+    "techEventCluster": {
+      "eventsCount": "{{count}} ESEMÉNY",
+      "upcomingWithin2Weeks": "{{count}} közelgő 2 héten belül",
+      "sampled": "{{count}} esemény mintavételezett listája."
+    },
+    "militaryFlight": {
+      "types": {
+        "fighter": "Vadászgép",
+        "bomber": "Bombázó",
+        "transport": "Szállító",
+        "tanker": "Tanker",
+        "awacs": "AWACS/AEW",
+        "reconnaissance": "Felderítő",
+        "helicopter": "Helikopter",
+        "drone": "UAV/Drón",
+        "patrol": "Járőr",
+        "specialOps": "Különleges műveleti",
+        "vip": "VIP szállító"
+      },
+      "altitude": "MAGASSÁG",
+      "ground": "Földön",
+      "speed": "SEBESSÉG",
+      "heading": "IRÁNY",
+      "hexCode": "HEX KÓD",
+      "squawk": "SQUAWK",
+      "attribution": "Forrás: OpenSky Network"
+    },
+    "militaryVessel": {
+      "aisDark": "AIS SÖTÉT",
+      "vessel": "Hajó",
+      "speed": "SEBESSÉG",
+      "heading": "IRÁNY",
+      "mmsi": "MMSI",
+      "hull": "HAJÓTEST #",
+      "region": "RÉGIÓ",
+      "strikeGroup": "CSAPÁSMÉRŐ CSOPORT",
+      "deploymentStatus": "ÁLLAPOT",
+      "usniIntel": "USNI hírszerzés",
+      "usniSource": "Forrás: USNI News Fleet Tracker",
+      "approximatePosition": "Megközelítő pozíció — USNI heti jelentés alapján, nem valós idejű AIS.",
+      "darkDescription": "⚠ A hajó elsötétült - AIS jel elveszett. Érzékeny műveletekre utalhat.",
+      "estPosition": "BECSÜLT POZÍCIÓ",
+      "aisLive": "AIS ÉLŐ",
+      "recentTracking": "Friss követés",
+      "lastReport": "LEGUTÓBBI",
+      "nearChokepoint": "SZŰK KERESZTMETSZET KÖZELÉBEN",
+      "nearBase": "BÁZIS KÖZELÉBEN",
+      "lastSeen": "UTOLJÁRA LÁTOTT"
+    },
+    "militaryCluster": {
+      "flightActivity": {
+        "exercise": "Katonai gyakorlat",
+        "patrol": "Járőrtevékenység",
+        "transport": "Szállítási műveletek",
+        "unknown": "Katonai tevékenység"
+      },
+      "moreAircraft": "+{{count}} további repülőgép",
+      "aircraftCount": "{{count}} REPÜLŐGÉP",
+      "aircraft": "REPÜLŐGÉP",
+      "activity": "TEVÉKENYSÉG",
+      "primary": "ELSŐDLEGES",
+      "trackedAircraft": "KÖVETETT REPÜLŐGÉPEK",
+      "vesselActivity": {
+        "exercise": "Haditengerészeti gyakorlat",
+        "deployment": "Haditengerészeti telepítés",
+        "patrol": "Járőrtevékenység",
+        "transit": "Flotta tranzit",
+        "unknown": "Haditengerészeti tevékenység"
+      },
+      "moreVessels": "+{{count}} további hajó",
+      "vesselsCount": "{{count}} HAJÓ",
+      "vessels": "HAJÓK",
+      "trackedVessels": "KÖVETETT HAJÓK"
+    },
+    "naturalEvent": {
+      "closed": "LEZÁRT",
+      "active": "AKTÍV",
+      "reported": "JELENTETT",
+      "viewOnSource": "Megtekintés: {{source}}",
+      "attribution": "Adatok: NASA EONET",
+      "storm": "Vihar",
+      "classification": "Besorolás",
+      "maxWind": "Max. szél",
+      "pressure": "Nyomás",
+      "movement": "Mozgás",
+      "tropicalSystem": "Trópusi rendszer"
+    },
+    "port": {
+      "types": {
+        "container": "KONTÉNER",
+        "oil": "OLAJTERMINÁL",
+        "lng": "LNG TERMINÁL",
+        "naval": "HADITENGERÉSZETI KIKÖTŐ",
+        "mixed": "VEGYES",
+        "bulk": "ÖMLESZTETT"
+      },
+      "worldRank": "VILÁGRANGLISTA"
+    },
+    "spaceport": {
+      "status": {
+        "active": "AKTÍV",
+        "construction": "ÉPÍTÉS ALATT",
+        "inactive": "INAKTÍV"
+      },
+      "launchActivity": "INDÍTÁSI TEVÉKENYSÉG",
+      "description": "Stratégiai űrindító létesítmény. Az indítási ütem és pályaelérési képességek kulcsfontosságú geopolitikai mutatók."
+    },
+    "mineral": {
+      "status": {
+        "producing": "TERMELŐ",
+        "development": "FEJLESZTÉS",
+        "exploration": "KUTATÁS"
+      },
+      "projectSubtitle": "{{mineral}} PROJEKT"
+    },
+    "stockExchange": {
+      "marketCap": "PIACI KAPITALIZÁCIÓ"
+    },
+    "financialCenter": {
+      "gfciRank": "GFCI RANG",
+      "specialties": "SZAKTERÜLETEK"
+    },
+    "centralBank": {
+      "currency": "PÉNZNEM"
+    },
+    "commodityHub": {
+      "commodities": "NYERSANYAGOK"
+    },
+    "iranEvent": {
+      "relatedEvents": "Kapcsolódó események"
+    },
+    "hotspotSubtexts": {
+      "conflict_zone": "Konfliktuszóna",
+      "dprk_watch": "KNDK figyelés",
+      "egypt_gis": "Egyiptom/GIS",
+      "energy_space": "Energia/Űr",
+      "financial_hub": "Pénzügyi központ",
+      "gchq_mi6": "GCHQ/MI6",
+      "greenland_intel": "Grönland hírszerzés",
+      "haiti_crisis": "Haiti válság",
+      "irgc_activity": "IRGC tevékenység",
+      "insurgency_coups": "Felkelés/puccsok",
+      "iraq_pmf": "Irak/PMF",
+      "kremlin_activity": "Kreml tevékenység",
+      "lebanon_hezbollah": "Libanon/Hezbollah",
+      "mossad_idf": "Moszad/IDF",
+      "nato_hq": "NATO központ",
+      "pla_mss_activity": "PLA/MSS tevékenység",
+      "pentagon_pizza_index": "Pentagon Pizza Index",
+      "piracy_conflict": "Kalózkodás/konfliktus",
+      "qatar_al_udeid": "Katar/Al Udeid",
+      "saudi_gip_mbs": "Szaúd GIP/MBS",
+      "strait_watch": "Szoros figyelés",
+      "syria_crisis": "Szíriai válság",
+      "tech_ai_hub": "Tech/MI központ",
+      "turkey_mit": "Törökország/MIT",
+      "uae_ecsr": "EAE/ECSR",
+      "venezuela_crisis": "Venezuelai válság",
+      "yemen_houthis": "Jemen/húszik"
+    }
+  },
+  "signals": {
+    "context": {
+      "prediction_leads_news": {
+        "whyItMatters": "Az előrejelzési piacok gyakran hamarabb árazzák be az információt, mint ahogy hírré válik — a kereskedők korai hozzáféréssel rendelkezhetnek a fejleményekhez.",
+        "actionableInsight": "Figyelje a friss híreket az elkövetkező 1-6 órában, amelyek magyarázhatják a piaci mozgást.",
+        "confidenceNote": "Magasabb megbízhatóság, ha több előrejelzési piac mozdul ugyanabba az irányba."
+      },
+      "news_leads_markets": {
+        "whyItMatters": "A hírek gyorsabban törnek ki, mint ahogy a piacok reagálnak — potenciális félreárazási lehetőség.",
+        "actionableInsight": "Figyelje a piaci felzárkózást, ahogy az algoritmusok és kereskedők feldolgozzák a híreket.",
+        "confidenceNote": "Erősebb jelzés, ha a hír Tier 1 hírügynökségektől származik."
+      },
+      "silent_divergence": {
+        "whyItMatters": "A piac jelentősen mozog azonosítható hír katalizátor nélkül — lehetséges bennfentes tudás, algoritmikus kereskedés vagy nem jelentett fejlemény.",
+        "actionableInsight": "Vizsgálja meg az alternatív adatforrásokat; a hírek később megjelenhetnek a mozgás magyarázatára.",
+        "confidenceNote": "Alacsonyabb megbízhatóság, mivel az ok ismeretlen — kezelje korai figyelmeztetésként, nem megerősített hírszerzésként."
+      },
+      "velocity_spike": {
+        "whyItMatters": "Egy történet gyorsul több hírforrásban — növekvő jelentőségre és potenciális piaci/politikai hatásra utal.",
+        "actionableInsight": "Ez a téma azonnali figyelmet igényel; számítson hivatalos nyilatkozatokra vagy piaci reakciókra.",
+        "confidenceNote": "Magasabb megbízhatóság több forrással; ellenőrizze, hogy Tier 1 források vannak-e köztük."
+      },
+      "keyword_spike": {
+        "whyItMatters": "Egy kifejezés jelentősen magasabb gyakorisággal jelenik meg az alapvonalánál több forrásban, fejlődő történetre utalva.",
+        "actionableInsight": "Tekintse át a kapcsolódó címsorokat és MI összefoglalót, majd korrelálja az országinstabilitással és piaci mozgásokkal.",
+        "confidenceNote": "A megbízhatóság nő erősebb alapvonal szorzóval és szélesebb forrás diverzitással."
+      },
+      "convergence": {
+        "whyItMatters": "Több független forrástípus erősíti meg ugyanazt az eseményt — a keresztvalidáció növeli a pontosság valószínűségét.",
+        "actionableInsight": "Kezelje magas megbízhatóságú hírszerzésként; a trianguláció csökkenti a téves pozitív kockázatot.",
+        "confidenceNote": "Nagyon magas megbízhatóság, amikor hírügynökségi + kormányzati + hírszerzési források egyeznek."
+      },
+      "triangulation": {
+        "whyItMatters": "Az \"autoritás háromszög\" (hírügynökségek, kormányzati források, hírszerzési specialisták) egyezik — ez a friss hírek megerősítésének aranystandardja.",
+        "actionableInsight": "Ez felhasználható hírszerzés; számítson hamarosan piaci/politikai reakciókra.",
+        "confidenceNote": "A rendszer legmagasabb megbízhatóságú jelzése — több autoritatív forrás egyetért."
+      },
+      "flow_drop": {
+        "whyItMatters": "Fizikai nyersanyag áramlási zavarás észlelve — a kínálati korlátok gyakran megelőzik az árkiugrásokat.",
+        "actionableInsight": "Figyelje az energia nyersanyag árakat; mérje fel az ellátási lánc kitettséget.",
+        "confidenceNote": "A megbízhatóság a zavarás időtartamától és az alternatív kínálat elérhetőségétől függ."
+      },
+      "flow_price_divergence": {
+        "whyItMatters": "Az ellátási zavarás híre még nem tükröződik a nyersanyag árakban — potenciális információs előny.",
+        "actionableInsight": "Vagy a piacok lassan reagálnak, vagy a zavarás kevésbé jelentős, mint ahogy jelentették.",
+        "confidenceNote": "Közepes megbízhatóság — a piacok jobb információval rendelkezhetnek, mint a hírjelentések."
+      },
+      "geo_convergence": {
+        "whyItMatters": "Több hír esemény csoportosul ugyanazon földrajzi helyen — potenciális eszkaláció vagy koordinált tevékenység.",
+        "actionableInsight": "Növelje a figyelési prioritást erre a régióra; korrelálja műholdas/AIS adatokkal, ha elérhető.",
+        "confidenceNote": "Magasabb megbízhatóság, ha az események több forrástípust és időszakot ölelnek fel."
+      },
+      "explained_market_move": {
+        "whyItMatters": "A piaci mozgásnak egyértelmű hír katalizátora van — nincs rejtély, az ármozgás ismert információt tükröz.",
+        "actionableInsight": "Értse meg a mozgást vezérlő narratívát; mérje fel, hogy a reakció arányos-e.",
+        "confidenceNote": "Magas megbízhatóság — a hírek és az ármozgás korrelál."
+      },
+      "hotspot_escalation": {
+        "whyItMatters": "Geopolitikai gócpont jelentős eszkalációt mutat hírakcivitás, országinstabilitás, földrajzi konvergencia és katonai jelenlét alapján.",
+        "actionableInsight": "Növelje a figyelési prioritást; mérje fel a downstream hatásokat az infrastruktúrára, piacokra és regionális stabilitásra.",
+        "confidenceNote": "A megbízhatóság több adatforrás által súlyozva — hírek (35%), országinstabilitás (25%), geo-konvergencia (25%), katonai tevékenység (15%)."
+      },
+      "sector_cascade": {
+        "whyItMatters": "A piaci mozgás kaszkádszerűen terjed a kapcsolódó szektorokba — rendszerszintű reakciót jelez egy katalizátor eseményre.",
+        "actionableInsight": "Azonosítsa az elsődleges katalizátort; mérje fel a kitettséget a korrelált eszközökben.",
+        "confidenceNote": "Magasabb megbízhatóság, amikor több szektor mozog hasonló sebességgel és irányba."
+      },
+      "military_surge": {
+        "whyItMatters": "Katonai szállítási tevékenység jelentősen az alapvonal felett — potenciális telepítést, humanitárius műveletet vagy erőkivetítést jelez.",
+        "actionableInsight": "Korrelálja a regionális hírekkel; mérje fel a közeli bázis tevékenységet és haditengerészeti mozgásokat.",
+        "confidenceNote": "Magasabb megbízhatóság tartós, többórás tevékenységgel és változatos repülőgéptípusokkal."
+      },
+      "fallback": {
+        "whyItMatters": "Jelzés észlelve.",
+        "actionableInsight": "Figyelje a fejleményeket.",
+        "confidenceNote": "Standard megbízhatóság."
+      }
+    }
+  },
+  "alerts": {
+    "instabilityRising": "{{country}} instabilitás emelkedik",
+    "instabilityFalling": "{{country}} instabilitás csökken",
+    "indexRose": "Az instabilitási index {{from}}-ról {{to}}-ra emelkedett ({{change}}). Hajtóerő: {{driver}}",
+    "indexFell": "Az instabilitási index {{from}}-ról {{to}}-ra csökkent ({{change}}). Hajtóerő: {{driver}}",
+    "geoAlert": "Földrajzi riasztás: {{location}}",
+    "cascadeAlert": "Infrastruktúra kaszkád riasztás",
+    "infraAlert": "Infrastruktúra riasztás: {{name}}",
+    "countriesAffected": "{{count}} ország érintett, legmagasabb hatás: {{impact}}",
+    "alert": "Riasztás: {{location}}",
+    "multipleRegions": "Több régió",
+    "trending": "\"{{term}}\" felkapott - {{count}} említés {{hours}} óra alatt",
+    "eventsDetected": "{{count}} esemény észlelve a régióban ({{lat}}°, {{lon}}°)"
+  },
+  "intel": {
+    "topics": {
+      "military": {
+        "name": "Katonai tevékenység",
+        "description": "Katonai gyakorlatok, telepítések és műveletek"
+      },
+      "cyber": {
+        "name": "Kiberfenyegetések",
+        "description": "Kibertámadások, zsarolóvírusok és digitális fenyegetések"
+      },
+      "nuclear": {
+        "name": "Nukleáris",
+        "description": "Nukleáris programok, NAÜ ellenőrzések, proliferáció"
+      },
+      "sanctions": {
+        "name": "Szankciók",
+        "description": "Gazdasági szankciók és kereskedelmi korlátozások"
+      },
+      "intelligence": {
+        "name": "Hírszerzés",
+        "description": "Kémkedés, hírszerzési műveletek, megfigyelés"
+      },
+      "maritime": {
+        "name": "Tengeri biztonság",
+        "description": "Haditengerészeti műveletek, tengeri szűk keresztmetszetek, tengeri útvonalak"
+      }
+    }
+  },
+  "common": {
+    "loading": "Betöltés...",
+    "error": "Hiba",
+    "noData": "Nem állnak rendelkezésre adatok",
+    "noDataAvailable": "Nem állnak rendelkezésre adatok",
+    "updated": "Épp most frissítve",
+    "ago": "{{time}} ezelőtt",
+    "retrying": "Újrapróbálás...",
+    "failedToLoad": "Átmenetileg nem elérhető — újrapróbálás",
+    "noDataShort": "Nincs adat",
+    "dataTemporarilyUnavailable": "Adatok átmenetileg nem elérhetők",
+    "upstreamUnavailable": "Upstream API nem elérhető — automatikus újrapróbálás",
+    "loadingUcdpEvents": "Fegyveres konfliktus események betöltése",
+    "loadingStablecoins": "Stablecoinok betöltése...",
+    "scanningThermalData": "Hőadatok pásztázása",
+    "calculatingExposure": "Kitettség számítása",
+    "computingSignals": "Jelzések számítása...",
+    "loadingEtfData": "ETF adatok betöltése...",
+    "loadingGiving": "Globális adakozási adatok betöltése",
+    "loadingDisplacement": "Menekültmozgás adatok betöltése",
+    "loadingClimateData": "Klímaadatok betöltése",
+    "failedTechReadiness": "Technológiai felkészültségi adatok átmenetileg nem elérhetők",
+    "failedRiskOverview": "Kockázati áttekintés átmenetileg nem elérhető",
+    "failedPredictions": "Előrejelzések átmenetileg nem elérhetők",
+    "failedCII": "CII adatok átmenetileg nem elérhetők",
+    "failedDependencyGraph": "Függőségi gráf átmenetileg nem elérhető",
+    "failedIntelFeed": "Hírszerzési hírfolyam átmenetileg nem elérhető",
+    "failedMarketData": "Piaci adatok átmenetileg nem elérhetők",
+    "failedSectorData": "Szektoradatok átmenetileg nem elérhetők",
+    "failedCommodities": "Nyersanyag adatok átmenetileg nem elérhetők",
+    "failedCryptoData": "Kripto adatok átmenetileg nem elérhetők",
+    "rateLimitedMarket": "Piaci adatok átmenetileg nem elérhetők (korlátozva) — rövidesen újrapróbálás",
+    "failedClusterNews": "Hírek csoportosítása sikertelen",
+    "noNewsAvailable": "Nincsenek elérhető hírek",
+    "noActiveTechHubs": "Nincsenek aktív tech központok",
+    "noActiveGeoHubs": "Nincsenek aktív geopolitikai központok",
+    "allSourcesDisabled": "Minden forrás letiltva",
+    "allIntelSourcesDisabled": "Minden hírszerzési forrás letiltva",
+    "noEventsInCategory": "Nincsenek események ebben a kategóriában",
+    "exportCsv": "CSV exportálás",
+    "exportJson": "JSON exportálás",
+    "exportData": "Adatok exportálása",
+    "selectAll": "Összes kiválasztása",
+    "selectNone": "Kiválasztás megszüntetése",
+    "unrest": "Zavargás",
+    "conflict": "Konfliktus",
+    "security": "Biztonság",
+    "information": "Információ",
+    "shareStory": "Történet megosztása",
+    "exportImage": "Kép exportálása",
+    "exportPdf": "PDF exportálás",
+    "new": "ÚJ",
+    "live": "ÉLŐ",
+    "cached": "GYORSÍTÓTÁRAZOTT",
+    "unavailable": "NEM ELÉRHETŐ",
+    "close": "Bezárás",
+    "cancel": "Mégse",
+    "currentVariant": "(jelenlegi)",
+    "retry": "Újrapróbálás",
+    "refresh": "Frissítés",
+    "all": "Összes"
+  },
+  "connectivity": {
+    "offlineCached": "Offline — gyorsítótárazott adatok megjelenítése ({{freshness}}).",
+    "offlineUnavailable": "Offline — élő adatok jelenleg nem elérhetők.",
+    "cachedFallback": "Élő adatok nem elérhetők — gyorsítótárazott adatok megjelenítése ({{freshness}})."
+  },
+  "preferences": {
+    "display": "Megjelenítés",
+    "intelligence": "Hírszerzés",
+    "media": "Média",
+    "panels": "Panelek",
+    "dataAndCommunity": "Adatok & közösség",
+    "theme": "Téma",
+    "themeDesc": "Automatikus követi a rendszer beállítást.",
+    "themeAuto": "Automatikus (rendszer követése)",
+    "themeDark": "Sötét",
+    "themeLight": "Világos",
+    "mapProvider": "Térkép csempe szolgáltató",
+    "mapProviderDesc": "Válassza ki, honnan töltődnek be a térkép csempék. Az automatikus önkiszolgáló PMTiles-t használ OpenFreeMap tartalékkal.",
+    "mapTheme": "Térkép téma",
+    "mapThemeDesc": "A térkép csempék vizuális stílusa. A lehetőségek szolgáltatónként változnak.",
+    "globePreset": "Vizuális előbeállítás",
+    "globePresetDesc": "Váltás a klasszikus és továbbfejlesztett földgömb megjelenítés között az összehasonlításhoz.",
+    "fontFamily": "Betűtípus",
+    "fontFamilyDesc": "Monospace a technikai megjelenéshez, rendszer alapértelmezett a könnyebb olvasáshoz.",
+    "fontMono": "Monospace",
+    "fontSystem": "Rendszer alapértelmezett"
+  },
+  "premium": {
+    "pro": "PRO",
+    "lockedDesc": "World Monitor licenckulcs szükséges",
+    "joinWaitlist": "Csatlakozás a várólistához",
+    "features": {
+      "orefSirens1": "Valós idejű izraeli rakéta és rakéta riasztások",
+      "orefSirens2": "Szirénazóna térkép fenyegetés besorolással",
+      "telegramIntel1": "Kurátált Telegram OSINT csatornák",
+      "telegramIntel2": "Közel valós idejű konfliktus & geopolitikai frissítések"
+    }
+  },
+  "contextMenu": {
+    "openCountryBrief": "Ország összefoglaló megnyitása",
+    "copyCoordinates": "Koordináták másolása"
+  },
+  "mcp": {
+    "connectPanel": "MCP csatlakoztatása",
+    "modalTitle": "MCP szerver csatlakoztatása",
+    "serverUrl": "Szerver URL",
+    "authHeader": "Hitelesítési fejléc",
+    "optional": "opcionális",
+    "connectBtn": "Csatlakozás & eszközök listázása",
+    "connecting": "Csatlakozás...",
+    "foundTools": "{{count}} eszköz találva",
+    "connectFailed": "Csatlakozás sikertelen",
+    "selectTool": "Válasszon eszközt",
+    "toolArgs": "Argumentumok (JSON)",
+    "panelTitle": "Panel cím",
+    "panelTitlePlaceholder": "Saját MCP panel",
+    "refreshEvery": "Frissítés minden",
+    "seconds": "másodperc",
+    "addPanel": "Panel hozzáadása",
+    "configure": "MCP konfigurálása",
+    "refreshNow": "Frissítés most",
+    "invalidJson": "Érvénytelen JSON",
+    "confirmDelete": "Eltávolítja ezt az MCP panelt?",
+    "quickConnect": "Gyors csatlakozás",
+    "or": "vagy adjon meg egyéni szervert"
+  }
+}

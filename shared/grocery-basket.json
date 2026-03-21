@@ -368,6 +368,9 @@
     "KES": "KESUSD=X",
     "ARS": "ARSUSD=X",
     "IDR": "IDRUSD=X",
-    "PHP": "PHPUSD=X"
+    "PHP": "PHPUSD=X",
+    "HUF": "HUFUSD=X",
+    "EURHUF": "EURHUF=X",
+    "USDHUF": "USDHUF=X"
   }
 }
