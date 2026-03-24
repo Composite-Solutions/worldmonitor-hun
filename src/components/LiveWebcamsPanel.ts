@@ -17,6 +17,10 @@ interface WebcamFeed {
   region: WebcamRegion;
   channelHandle: string;
   fallbackVideoId: string;
+  /** Optional HLS stream URL — rendered as native <video> instead of YouTube iframe */
+  hlsUrl?: string;
+  /** Optional thumbnail for HLS streams */
+  hlsThumbnail?: string;
 }
 
 // Verified YouTube live stream IDs — validated Feb 2026 via title cross-check.
@@ -30,6 +34,7 @@ const WEBCAM_FEEDS: WebcamFeed[] = [
   { id: 'balaton-alsoors', city: 'Balaton (Alsóörs)', country: 'Hungary', region: 'hungary', channelHandle: '@InfoCAM-hu', fallbackVideoId: 'PEC7g8PuNt4' },
   { id: 'veszprem-panorama', city: 'Veszprém', country: 'Hungary', region: 'hungary', channelHandle: '@InfoCAM-hu', fallbackVideoId: 'akeYBgt-AQ0' },
   { id: 'szekesfehervar', city: 'Székesfehérvár', country: 'Hungary', region: 'hungary', channelHandle: '@Fehérvár', fallbackVideoId: 'WHUTZjQ3TbU' },
+  { id: 'pecs-hotelvictoria', city: 'Pécs (Hotel Victoria)', country: 'Hungary', region: 'hungary', channelHandle: '', fallbackVideoId: 'xHGptu2SkZk', hlsUrl: '//cam.idokep.hu/live/hotelvictoria/live-fc8a413895.m3u8', hlsThumbnail: '//cam.idokep.hu/cam/hotelvictoria/thumbnail.jpg' },
   // Iran Attacks — Tehran, Tel Aviv, Jerusalem
   { id: 'iran-tehran', city: 'Tehran', country: 'Iran', region: 'iran', channelHandle: '@IranHDCams', fallbackVideoId: '-zGuR1qVKrU' },
   { id: 'iran-telaviv', city: 'Tel Aviv', country: 'Israel', region: 'iran', channelHandle: '@IsraelLiveCam', fallbackVideoId: 'gmtlJ_m2r5A' },
@@ -113,6 +118,8 @@ export class LiveWebcamsPanel extends Panel {
   private toolbar: HTMLElement | null = null;
   private iframes: HTMLIFrameElement[] = [];
   private iframeTrackers = new Map<HTMLIFrameElement, WebcamIframeTracker>();
+  private hlsVideos: HTMLVideoElement[] = [];
+  private hlsInstances: Array<import('hls.js').default> = [];
   private observer: IntersectionObserver | null = null;
   private isVisible = false;
   // Stream lifecycle
@@ -318,6 +325,36 @@ export class LiveWebcamsPanel extends Panel {
       iframe.setAttribute('loading', 'lazy');
     }
     return iframe;
+  }
+
+  private async createHlsVideo(feed: WebcamFeed): Promise<HTMLVideoElement> {
+    const video = document.createElement('video');
+    video.className = 'webcam-iframe'; // reuse iframe styling (fills cell)
+    video.muted = true;
+    video.autoplay = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = 'auto';
+    video.title = `${feed.city} live webcam`;
+    if (feed.hlsThumbnail) video.poster = feed.hlsThumbnail;
+
+    const hlsUrl = feed.hlsUrl!;
+    const nativeHls = video.canPlayType('application/vnd.apple.mpegurl');
+    if (nativeHls) {
+      video.src = hlsUrl;
+    } else {
+      const { default: Hls } = await import('hls.js');
+      if (!Hls.isSupported()) {
+        video.src = hlsUrl; // last resort
+        return video;
+      }
+      const hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+      this.hlsInstances.push(hls);
+      hls.loadSource(hlsUrl);
+      hls.attachMedia(video);
+    }
+    this.hlsVideos.push(video);
+    return video;
   }
 
   private findIframeBySource(source: MessageEventSource | null): HTMLIFrameElement | null {
@@ -527,7 +564,15 @@ export class LiveWebcamsPanel extends Panel {
       cell.appendChild(label);
       grid.appendChild(cell);
 
-      if (desktop && i > 0) {
+      if (feed.hlsUrl) {
+        const insertHls = () => {
+          if (!this.isVisible || this.isIdle) return;
+          void this.createHlsVideo(feed).then(video => {
+            if (cell.isConnected) cell.insertBefore(video, label);
+          });
+        };
+        desktop && i > 0 ? setTimeout(insertHls, i * 800) : insertHls();
+      } else if (desktop && i > 0) {
         // Stagger iframe creation on desktop — WKWebView throttles concurrent autoplay.
         setTimeout(() => {
           if (!this.isVisible || this.isIdle) return;
@@ -554,10 +599,16 @@ export class LiveWebcamsPanel extends Panel {
     const wrapper = document.createElement('div');
     wrapper.className = 'webcam-single';
 
-    const iframe = this.createIframe(this.activeFeed);
-    wrapper.appendChild(iframe);
-    this.iframes.push(iframe);
-    this.trackIframe(iframe, this.activeFeed, wrapper);
+    if (this.activeFeed.hlsUrl) {
+      void this.createHlsVideo(this.activeFeed).then(video => {
+        if (wrapper.isConnected) wrapper.insertBefore(video, wrapper.firstChild);
+      });
+    } else {
+      const iframe = this.createIframe(this.activeFeed);
+      wrapper.appendChild(iframe);
+      this.iframes.push(iframe);
+      this.trackIframe(iframe, this.activeFeed, wrapper);
+    }
 
     const switcher = document.createElement('div');
     switcher.className = 'webcam-switcher';
@@ -601,6 +652,17 @@ export class LiveWebcamsPanel extends Panel {
       }
     });
     this.iframes = [];
+    // Tear down HLS players
+    for (const hls of this.hlsInstances) {
+      hls.destroy();
+    }
+    this.hlsInstances = [];
+    for (const video of this.hlsVideos) {
+      video.pause();
+      video.src = '';
+      video.remove();
+    }
+    this.hlsVideos = [];
   }
 
   private setupIntersectionObserver(): void {

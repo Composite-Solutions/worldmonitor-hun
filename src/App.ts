@@ -398,6 +398,21 @@ export class App {
         localStorage.setItem(HAPPY_PANEL_FIX_KEY, 'done');
       }
 
+      // One-time migration: HUN variant — slim default panels to core set
+      const HUN_SLIM_DEFAULTS_KEY = 'worldmonitor-hun-slim-defaults-v1';
+      if (!localStorage.getItem(HUN_SLIM_DEFAULTS_KEY)) {
+        for (const key of Object.keys(panelSettings)) {
+          if (isDynamicPanel(key)) continue;
+          const def = DEFAULT_PANELS[key];
+          if (def) {
+            panelSettings[key] = { ...panelSettings[key]!, enabled: def.enabled, priority: def.priority };
+          }
+        }
+        saveToStorage(STORAGE_KEYS.panels, panelSettings);
+        localStorage.setItem(HUN_SLIM_DEFAULTS_KEY, 'done');
+        console.log('[App] HUN slim defaults migration applied');
+      }
+
       console.log('[App] Loaded panel settings from storage:', Object.entries(panelSettings).filter(([_, v]) => !v.enabled).map(([k]) => k));
 
       // One-time migration: reorder panels for existing users (v1.9 panel layout)
