@@ -178,7 +178,7 @@
       "protestsDetected": "{{count}} active protests detected",
       "aircraftTracked": "{{count}} military aircraft tracked",
       "vesselsTracked": "{{count}} military vessels tracked",
-      "internetOutages": "{{count}} internet outages",
+      "internetOutages": "{{count}} internet disruptions",
       "recentEarthquakes": "{{count}} recent earthquakes",
       "stockIndex": "Stock index: {{value}}",
       "recentHeadlines": "**Recent headlines:**",
@@ -280,6 +280,7 @@
   "panels": {
     "liveNews": "Live News",
     "markets": "Markets",
+    "marketImplications": "AI Market Implications",
     "map": "Global Situation",
     "techMap": "Global Tech",
     "techHubs": "Hot Tech Hubs",
@@ -345,6 +346,12 @@
     "producthunt": "Product Hunt",
     "events": "Tech Events",
     "serviceStatus": "Service Status",
+    "internetDisruptions": "Internet Disruptions",
+    "internetDisruptionsTabs": {
+      "outages": "Outages",
+      "ddos": "DDoS",
+      "anomalies": "Anomalies"
+    },
     "techReadiness": "Tech Readiness Index",
     "gccInvestments": "GCC Investments",
     "geoHubs": "Geopolitical Hubs",
@@ -353,16 +360,23 @@
     "gulfEconomies": "Gulf Economies",
     "groceryBasket": "Grocery Index",
     "groceryItem": "Item",
-    "bigmac": "Big Mac Index",
+    "bigmac": "Real Big Mac Index",
     "bigmacDesc": "Big Mac prices across Middle East countries (Big Mac Index)",
     "bigmacWow": "WoW",
     "bigmacCountry": "Country",
+    "fuelPrices": "Fuel Prices",
+    "fuelPricesDesc": "Retail gasoline and diesel prices across 30+ countries worldwide",
+    "fuelPricesCountry": "Country",
+    "fuelPricesGasoline": "Gasoline",
+    "fuelPricesDiesel": "Diesel",
+    "fuelPricesSource": "Source",
     "groceryBasketDesc": "Grocery basket price comparison across 24 countries worldwide",
     "gulfIndices": "Gulf Indices",
     "gulfCurrencies": "Gulf Currencies",
     "gulfOil": "Gulf Oil",
     "airlineIntel": "✈️ Airline Intelligence",
-    "consumerPrices": "Consumer Prices"
+    "consumerPrices": "Consumer Prices",
+    "fearGreed": "Fear & Greed"
   },
   "commands": {
     "prefixes": {
@@ -505,7 +519,8 @@
       "flightAirborne": "FL{{fl}} · {{kts}} kts",
       "flightMilitary": "Military · {{type}} · FL{{fl}}",
       "flightMilitaryOnGround": "Military · {{type}} · on ground",
-      "flightSearchHint": "Press Enter or click to look up live position"
+      "flightSearchHint": "Press Enter or click to look up live position",
+      "flightNotFound": "No live position found for {{callsign}}"
     },
     "signal": {
       "title": "INTELLIGENCE FINDING",
@@ -617,6 +632,8 @@
       }
     },
     "settingsWindow": {
+      "freePanelLimit": "Free plan: max {{max}} panels. Upgrade to PRO for unlimited.",
+      "freeSourceLimit": "Free plan: max {{max}} sources. Upgrade to PRO for unlimited.",
       "validating": "Validating API keys...",
       "saved": "Settings saved",
       "failed": "Save failed: {{error}}",
@@ -752,7 +769,7 @@
         "aircraftTracked": "{{count}} military aircraft tracked",
         "vesselsTracked": "{{count}} military vessels tracked",
         "activeStrikes": "{{count}} active strikes detected",
-        "internetOutages": "{{count}} internet outages",
+        "internetOutages": "{{count}} internet disruptions",
         "recentEarthquakes": "{{count}} recent earthquakes",
         "stockIndex": "Stock index: {{value}}",
         "recentHeadlines": "**Recent headlines:**"
@@ -847,6 +864,8 @@
       "indicators": "Indicators",
       "gov": "Gov",
       "centralBanks": "Central Banks",
+      "laborMarket": "Labor Market",
+      "metroUnemployment": "Metro Unemployment",
       "noIndicatorData": "No indicator data yet - FRED may be loading",
       "fredKeyMissing": "FRED API key required. Add it in Settings to enable economic indicators.",
       "noSpending": "No recent government awards",
@@ -954,6 +973,14 @@
       "colDate": "Date",
       "colMonthly": "Monthly",
       "colFytd": "FY YTD",
+      "strategicFlows": "Strategic Flows",
+      "noComtradeData": "No strategic flow data available",
+      "comtradeUnavailable": "UN Comtrade data temporarily unavailable",
+      "sourceComtrade": "UN Comtrade",
+      "anomalyBadge": "Anomaly",
+      "colReporter": "Country",
+      "colCommodity": "Commodity",
+      "colTradeValue": "Trade Value",
       "infoTooltip": "<strong>Trade Policy</strong> WTO baseline and tariff-impact monitoring:<ul><li><strong>Overview</strong>: WTO MFN baseline rates with US effective-rate context when available</li><li><strong>Tariffs</strong>: WTO MFN tariff trends vs the US effective tariff estimate</li><li><strong>Trade Flows</strong>: Export/import volumes with year-over-year changes</li><li><strong>Barriers</strong>: Technical barriers to trade (TBT/SPS notifications)</li><li><strong>Revenue</strong>: Monthly US customs duties revenue (US Treasury MTS data)</li></ul>"
     },
     "consumerPrices": {
@@ -1025,7 +1052,11 @@
       "token": "Token",
       "mcap": "MCap",
       "vol24h": "24h Vol",
-      "chg24h": "24h Chg"
+      "chg24h": "24h Chg",
+      "infoTooltip": "<strong>Stablecoins</strong> Peg health, market cap, and 24h volume for major USD-pegged tokens (USDT, USDC, DAI, BUSD). A broken peg signals systemic risk."
+    },
+    "marketImplications": {
+      "infoTooltip": "<strong>AI Market Implications</strong> LLM-generated trade signals derived from live geopolitical, commodity, and macro state after each forecast cycle.<ul><li><strong>Direction</strong>: LONG / SHORT / HEDGE with confidence rating</li><li><strong>Timeframe</strong>: 1W, 2W, 1M, or 3M horizon</li><li><strong>Driver</strong>: Key catalyst behind the signal</li><li><strong>Risk</strong>: Caveat or invalidation condition</li></ul><em>For informational purposes only. Not investment advice.</em>"
     },
     "status": {
       "dataFeeds": "Data Feeds",
@@ -1150,7 +1181,7 @@
       "nuclear": "Nuclear"
     },
     "community": {
-      "joinDiscussion": "Join Discord",
+      "joinDiscussion": "Help Shape What's Next",
       "openDiscussion": "Join Discord",
       "dontShowAgain": "Don't show again",
       "sectionLabel": "Community"
@@ -1215,7 +1246,7 @@
         "cloudRegions": "Cloud Regions",
         "aiDataCenters": "AI Data Centers",
         "underseaCables": "Undersea Cables",
-        "internetOutages": "Internet Outages",
+        "internetOutages": "Internet Disruptions",
         "cyberThreats": "Cyber Threats",
         "techEvents": "Tech Events",
         "naturalEvents": "Natural Events",
@@ -1278,7 +1309,7 @@
         "disruption": "Disruption",
         "advisory": "Advisory",
         "repairShip": "Repair Ship",
-        "internetOutage": "Internet Outage",
+        "internetOutage": "Internet Disruption",
         "medium": "medium",
         "news": "News",
         "undisclosed": "Undisclosed",
@@ -1726,7 +1757,7 @@
       "noEventsIn7Days": "No events in 7 days"
     },
     "gdeltIntel": {
-      "infoTooltip": "<strong>GDELT Intelligence</strong> Real-time global news monitoring:<ul><li>Curated topic categories (conflicts, cyber, etc.)</li><li>Articles from 100+ languages translated</li><li>Updates every 15 minutes</li></ul>Source: GDELT Project (gdeltproject.org)"
+      "infoTooltip": "<strong>News Intelligence</strong> Real-time global news monitoring:<ul><li>Curated topic categories (conflicts, cyber, etc.)</li><li>Articles from 100+ languages translated</li><li>Updates every 15 minutes</li><li>14-day media tone &amp; volume trend per topic</li><li>14-day media tone &amp; volume trend per topic</li></ul>Source: GDELT Project (gdeltproject.org)"
     },
     "telegramIntel": {
       "infoTooltip": "Real-time signals from monitored Telegram OSINT channels",
@@ -1843,6 +1874,43 @@
     "commodities": {
       "infoTooltip": "<strong>Commodities</strong> Tradeable non-energy commodity tape focused on metals and materials. Energy prices live in Energy Complex; macro stress indicators live in Macro Stress."
     },
+    "crypto": {
+      "infoTooltip": "<strong>Crypto</strong> Live prices, 24h changes, and volume for major cryptocurrencies. Data sourced from CoinGecko."
+    },
+    "defiTokens": {
+      "infoTooltip": "<strong>DeFi Tokens</strong> Prices and 24h/7d performance for major decentralized finance protocol tokens — DEXes, lending platforms, and yield protocols."
+    },
+    "aiTokens": {
+      "infoTooltip": "<strong>AI Tokens</strong> Prices and 24h/7d performance for AI and machine learning sector tokens — compute networks, decentralized AI infrastructure, and data protocols."
+    },
+    "altTokens": {
+      "infoTooltip": "<strong>Alt Tokens</strong> Prices and 24h/7d performance for alternative and emerging crypto tokens outside the major-cap tiers."
+    },
+    "stockAnalysis": {
+      "infoTooltip": "<strong>Premium Stock Analysis</strong> AI-powered analysis for stocks in your watchlist — buy/hold/sell signals, price targets, key risks, and catalysts updated daily."
+    },
+    "stockBacktest": {
+      "infoTooltip": "<strong>Premium Backtesting</strong> Historical performance backtests for stocks in your watchlist — past returns, max drawdown, and volatility metrics."
+    },
+    "dailyMarketBrief": {
+      "infoTooltip": "<strong>Daily Market Brief</strong> AI-generated daily summary of global market conditions, key macro trends, and sector-level signals — refreshes each trading day."
+    },
+    "centralBankWatch": {
+      "infoTooltip": "<strong>Central Bank Watch</strong> Latest statements, rate decisions, and communications from the Federal Reserve, ECB, Bank of England, and other major central banks worldwide."
+    },
+    "gulfEconomies": {
+      "infoTooltip": "<strong>Gulf Economies</strong> Real-time Gulf stock indices, currency rates, and oil prices for GCC economies (Saudi Arabia, UAE, Kuwait, Qatar, Bahrain, Oman)."
+    },
+    "groceryBasket": {
+      "infoTooltip": "<strong>Grocery Index</strong> Global grocery basket price comparison across 24 countries — tracks real-world consumer goods inflation beyond headline CPI."
+    },
+    "bigmac": {
+      "infoTooltip": "<strong>Real Big Mac Index</strong> The Economist's Big Mac Index measures purchasing power parity by comparing McDonald's burger prices across countries. Updated when new data is published (quarterly/annually)."
+    },
+    "fuelPrices": {
+      "infoTooltip": "<strong>Fuel Prices</strong> Retail pump prices for gasoline and diesel across 30+ countries, normalized to USD/liter for comparison. Prices are sourced from official government open-data programs and updated weekly. Cheapest and most expensive countries are highlighted. WoW change shown when prior week data is available.",
+      "countries": "countries"
+    },
     "panel": {
       "showMethodologyInfo": "Show methodology info",
       "dragToResize": "Drag to resize (double-click to reset)",
@@ -1853,6 +1921,15 @@
     "languageSelector": {
       "selectLanguage": "Select Language",
       "mapLabelsFallbackVi": "Map labels currently fall back to English for Vietnamese."
+    },
+    "internetDisruptions": {
+      "noOutages": "No active outages detected",
+      "noDdos": "No DDoS data available",
+      "noAnomalies": "No traffic anomalies detected",
+      "byProtocol": "Attack Protocol",
+      "byVector": "Attack Vector",
+      "topTargets": "Top Target Countries",
+      "infoTooltip": "<strong>Internet Disruptions</strong> Real-time internet outages, DDoS attacks, and traffic anomalies from global network monitoring:<ul><li><strong>Outages</strong>: BGP-detected connectivity failures by country</li><li><strong>DDoS</strong>: Volumetric attack reports by protocol and vector</li><li><strong>Anomalies</strong>: Unusual traffic patterns from Cloudflare Radar</li></ul>"
     },
     "serviceStatus": {
       "checkingServices": "Checking services...",
@@ -2682,6 +2759,8 @@
     "invalidJson": "Invalid JSON",
     "confirmDelete": "Remove this MCP panel?",
     "quickConnect": "Quick Connect",
-    "or": "or enter a custom server"
+    "or": "or enter a custom server",
+    "generatingVisualization": "Building visualization...",
+    "visualizationFailed": "Visualization failed"
   }
 }

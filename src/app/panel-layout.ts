@@ -32,9 +32,11 @@ import {
   StrategicPosturePanel,
   TechEventsPanel,
   ServiceStatusPanel,
+  InternetDisruptionsPanel,
   RuntimeConfigPanel,
   InsightsPanel,
   MacroSignalsPanel,
+  FearGreedPanel,
   ETFFlowsPanel,
   StablecoinPanel,
   UcdpEventsPanel,
@@ -45,6 +47,7 @@ import {
   GulfEconomiesPanel,
   GroceryBasketPanel,
   BigMacPanel,
+  FuelPricesPanel,
   WorldClockPanel,
   AirlineIntelPanel,
   AviationCommandBar,
@@ -79,7 +82,7 @@ import { openMcpConnectModal } from '@/components/McpConnectModal';
 import { loadMcpPanels, saveMcpPanel } from '@/services/mcp-store';
 import type { McpPanelSpec } from '@/services/mcp-store';
 
-export interface PanelLayoutCallbacks {
+export interface PanelLayoutManagerCallbacks {
   openCountryStory: (code: string, name: string) => void;
   openCountryBrief: (code: string) => void;
   loadAllData: () => Promise<void>;
@@ -89,7 +92,7 @@ export interface PanelLayoutCallbacks {
 
 export class PanelLayoutManager implements AppModule {
   private ctx: AppContext;
-  private callbacks: PanelLayoutCallbacks;
+  private callbacks: PanelLayoutManagerCallbacks;
   private panelDragCleanupHandlers: Array<() => void> = [];
   private resolvedPanelOrder: string[] = [];
   private bottomSetMemory: Set<string> = new Set();
@@ -97,7 +100,7 @@ export class PanelLayoutManager implements AppModule {
   private aviationCommandBar: AviationCommandBar | null = null;
   private readonly applyTimeRangeFilterDebounced: (() => void) & { cancel(): void };
 
-  constructor(ctx: AppContext, callbacks: PanelLayoutCallbacks) {
+  constructor(ctx: AppContext, callbacks: PanelLayoutManagerCallbacks) {
     this.ctx = ctx;
     this.callbacks = callbacks;
     this.applyTimeRangeFilterDebounced = debounce(() => {
@@ -107,6 +110,7 @@ export class PanelLayoutManager implements AppModule {
 
   init(): void {
     this.renderLayout();
+    this.fetchGitHubStars();
   }
 
   destroy(): void {
@@ -135,6 +139,22 @@ export class PanelLayoutManager implements AppModule {
     this.ctx.panels['airline-intel']?.destroy();
 
     window.removeEventListener('resize', this.ensureCorrectZones);
+  }
+
+  private async fetchGitHubStars(): Promise<void> {
+    try {
+      const response = await fetch('https://api.github.com/repos/koala73/worldmonitor');
+      if (!response.ok) return;
+      const data = await response.json();
+      const starsEl = document.getElementById('githubStars');
+      if (starsEl) {
+        const count = data.stargazers_count;
+        const k = Math.round(count / 1000);
+        starsEl.textContent = `${k}k`;
+      }
+    } catch (e) {
+      // ignore errors
+    }
   }
 
   renderLayout(): void {
@@ -432,9 +452,13 @@ export class PanelLayoutManager implements AppModule {
     return Object.prototype.hasOwnProperty.call(this.ctx.panelSettings, key);
   }
 
+  private static readonly NEWS_PANEL_TOOLTIPS: Record<string, string> = {
+    centralbanks: t('components.centralBankWatch.infoTooltip'),
+  };
+
   private createNewsPanel(key: string, labelKey: string): NewsPanel | null {
     if (!this.shouldCreatePanel(key)) return null;
-    const panel = new NewsPanel(key, t(labelKey));
+    const panel = new NewsPanel(key, t(labelKey), PanelLayoutManager.NEWS_PANEL_TOOLTIPS[key]);
     this.attachRelatedAssetHandlers(panel);
     this.ctx.newsPanels[key] = panel;
     this.ctx.panels[key] = panel;
@@ -544,7 +568,8 @@ export class PanelLayoutManager implements AppModule {
       if (!this.ctx.panelSettings[panelKey] && !this.ctx.panelSettings[key]) continue;
       const panelConfig = this.ctx.panelSettings[panelKey] ?? this.ctx.panelSettings[key] ?? ALL_PANELS[panelKey] ?? ALL_PANELS[key];
       const label = panelConfig?.name ?? key.charAt(0).toUpperCase() + key.slice(1);
-      const panel = new NewsPanel(panelKey, label);
+      const tooltip = PanelLayoutManager.NEWS_PANEL_TOOLTIPS[panelKey] ?? PanelLayoutManager.NEWS_PANEL_TOOLTIPS[key];
+      const panel = new NewsPanel(panelKey, label, tooltip);
       this.attachRelatedAssetHandlers(panel);
       this.ctx.newsPanels[key] = panel;
       this.ctx.panels[panelKey] = panel;
@@ -684,6 +709,16 @@ export class PanelLayoutManager implements AppModule {
       (!_wmKeyPresent && !isProUser()) ? ['Pre-market watchlist priorities', 'Action plan for the session', 'Risk watch tied to current finance headlines'] : undefined,
     );
 
+    this.lazyPanel('market-implications', () =>
+      import('@/components/MarketImplicationsPanel').then(m => new m.MarketImplicationsPanel()),
+      undefined,
+      (!_wmKeyPresent && !isProUser()) ? [
+        'AI-generated trade signals from live geopolitical world state',
+        'Direction badges (LONG/SHORT/HEDGE) with confidence ratings',
+        'Updated each forecast cycle with fresh market context',
+      ] : undefined,
+    );
+
     this.lazyPanel('forecast', () =>
       import('@/components/ForecastPanel').then(m => new m.ForecastPanel()),
       undefined,
@@ -730,6 +765,10 @@ export class PanelLayoutManager implements AppModule {
       this.ctx.panels['bigmac'] = new BigMacPanel();
     }
 
+    if (this.shouldCreatePanel('fuel-prices') && !this.ctx.panels['fuel-prices']) {
+      this.ctx.panels['fuel-prices'] = new FuelPricesPanel();
+    }
+
     if (this.shouldCreatePanel('live-news') &&
         (getDefaultLiveChannels().length > 0 || loadChannelsFromStorage().length > 0)) {
       this.ctx.panels['live-news'] = new LiveNewsPanel();
@@ -744,6 +783,7 @@ export class PanelLayoutManager implements AppModule {
     }
 
     this.createPanel('events', () => new TechEventsPanel('events', () => this.ctx.allNews));
+    this.createPanel('internet-disruptions', () => new InternetDisruptionsPanel());
     this.createPanel('service-status', () => new ServiceStatusPanel());
 
     this.lazyPanel('tech-readiness', () =>
@@ -763,6 +803,7 @@ export class PanelLayoutManager implements AppModule {
     );
 
     this.createPanel('macro-signals', () => new MacroSignalsPanel());
+    this.createPanel('fear-greed', () => new FearGreedPanel());
     this.createPanel('etf-flows', () => new ETFFlowsPanel());
     this.createPanel('stablecoins', () => new StablecoinPanel());
 
@@ -1038,7 +1079,7 @@ export class PanelLayoutManager implements AppModule {
       const configured = new Set(Object.keys(ALL_PANELS).filter(k => k !== 'map'));
       const created = new Set(Object.keys(this.ctx.panels));
       const extra = [...created].filter(k => !configured.has(k) && k !== 'deduction' && k !== 'runtime-config' && !k.startsWith('cw-') && !k.startsWith('mcp-'));
-      if (extra.length) console.warn('[PanelLayout] Panels created but not in ALL_PANELS:', extra);
+      if (extra.length) console.warn('[PanelLayoutManager] Panels created but not in ALL_PANELS:', extra);
     }
   }
 
@@ -1402,12 +1443,19 @@ export class PanelLayoutManager implements AppModule {
       const bottomGrid = document.getElementById('mapBottomGrid');
       if (bottomGrid && this.getEffectiveUltraWide() && this.bottomSetMemory.has(key)) {
         this.insertByOrder(bottomGrid, el, key);
-        return;
+      } else {
+        const grid = document.getElementById('panelsGrid');
+        if (!grid) return;
+        this.insertByOrder(grid, el, key);
       }
 
-      const grid = document.getElementById('panelsGrid');
-      if (!grid) return;
-      this.insertByOrder(grid, el, key);
+      // applyPanelSettings() already ran at startup before this lazy promise resolved.
+      // If the user had this panel disabled, it must be hidden immediately after insertion
+      // or it reappears until the next applyPanelSettings() call.
+      const savedConfig = this.ctx.panelSettings[key];
+      if (savedConfig && !savedConfig.enabled) {
+        this.ctx.panels[key]?.hide();
+      }
     }).catch((err) => {
       console.error(`[panel] failed to lazy-load "${key}"`, err);
     });

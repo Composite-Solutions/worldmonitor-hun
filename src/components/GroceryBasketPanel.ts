@@ -10,7 +10,7 @@ const client = new EconomicServiceClient(getRpcBaseUrl(), { fetch: (...args: Par
 
 export class GroceryBasketPanel extends Panel {
   constructor() {
-    super({ id: 'grocery-basket', title: t('panels.groceryBasket') });
+    super({ id: 'grocery-basket', title: t('panels.groceryBasket'), infoTooltip: t('components.groceryBasket.infoTooltip') });
   }
 
   public async fetchData(): Promise<void> {
@@ -99,7 +99,7 @@ export class GroceryBasketPanel extends Panel {
             <tbody>${rows}${totalRow}</tbody>
           </table>
         </div>
-        ${updatedAt ? `<div class="gb-updated">${t('common.updatedAt')}: ${updatedAt}</div>` : ''}
+        ${updatedAt ? `<div class="gb-updated">${t('components.status.updatedAt', { time: updatedAt })}</div>` : ''}
       </div>
     `;
 
