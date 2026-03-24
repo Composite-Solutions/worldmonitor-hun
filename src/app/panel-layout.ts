@@ -274,7 +274,7 @@ export class PanelLayoutManager implements AppModule {
       </div>
       <footer class="site-footer">
         <div class="site-footer-brand">
-          <img src="/favico/favicon-32x32.png" alt="" width="28" height="28" class="site-footer-icon" />
+          <img src="/hungaryusa.png" alt="" width="28" height="28" class="site-footer-icon" />
           <div class="site-footer-brand-text">
             <span class="site-footer-name">WORLD MONITOR HU</span>
             <span class="site-footer-sub"></span>
